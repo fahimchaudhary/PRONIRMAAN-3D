@@ -1,0 +1,11 @@
+{
+  "name": "pronirmaan-scroll-animation",
+  "version": "1.0.0",
+  "description": "High-quality smooth scroll-based frame animation",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["canvas", "scroll-animation", "image-sequence"],
+  "license": "ISC"
+}

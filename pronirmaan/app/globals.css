@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-barlow: 'Barlow Condensed', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --brand-green: #0f8a3c;
+  --brand-green-hover: #0b7331;
+  --brand-green-dark: #085524;
+  --brand-dark: #131c26;
+  --brand-cream: #f6f4f0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a2530;
+  background-color: #f6f4f0;
+  overflow-x: hidden;
+}
+
+/* Brand green utility classes */
+.bg-brand-green {
+  background-color: #0f8a3c;
+}
+.bg-brand-green-hover:hover {
+  background-color: #0b7331;
+}
+.text-brand-green {
+  color: #0f8a3c;
+}
+.border-brand-green {
+  border-color: #0f8a3c;
+}
+
+.font-heading {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-condensed {
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Custom chevron cut for hero bottom */
+.hero-chevron-clip {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 36px), 50% 100%, 0 calc(100% - 36px));
+}
+
+@media (min-width: 768px) {
+  .hero-chevron-clip {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 50% 100%, 0 calc(100% - 48px));
+  }
+}
+
+/* Angled cut for services worker image */
+.worker-angled-clip {
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+}
+
+@media (max-width: 1024px) {
+  .worker-angled-clip {
+    clip-path: none;
+  }
+}
+
+/* Angled cut for top of service cards */
+.service-card-clip {
+  clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Faceted geometric silhouette for footer banner */
+.footer-banner-clip {
+  clip-path: polygon(0 38px, 42% 38px, 58% 6px, 78% 26px, 100% 12px, 100% 100%, 0 100%);
+}
+
+@media (max-width: 768px) {
+  .footer-banner-clip {
+    clip-path: polygon(0 20px, 50% 0, 100% 15px, 100% 100%, 0 100%);
+  }
+}
+
+/* Vertical writing mode for Stoneway watermark */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+

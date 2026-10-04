@@ -1,0 +1,6 @@
+{
+  "name": "Stoneway Construction Co.",
+  "description": "Strong foundations, lasting results. Commercial, civil, and residential construction services building communities since 1998.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
