@@ -1,90 +1,64 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const net = require('net');
 
 const ROOT_DIR = __dirname;
-const PREFERRED_PORTS = [5173, 3001, 8000, 8085, 9000];
-
-const MIME_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'application/javascript; charset=utf-8',
-  '.json': 'application/json',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.png': 'image/png',
-  '.webp': 'image/webp',
-  '.ico': 'image/x-icon',
-  '.svg': 'image/svg+xml'
-};
-
-function serveFile(req, res, filePath) {
-  fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('404 Not Found');
-      return;
-    }
-
-    const ext = path.extname(filePath).toLowerCase();
-    const mime = MIME_TYPES[ext] || 'application/octet-stream';
-
-    const headers = {
-      'Content-Type': mime,
-      'Content-Length': stats.size,
-      'Access-Control-Allow-Origin': '*',
-      'Accept-Ranges': 'bytes'
-    };
-
-    if (ext === '.jpg' || ext === '.jpeg' || ext === '.png' || ext === '.webp') {
-      headers['Cache-Control'] = 'public, max-age=31536000, immutable';
-    } else {
-      headers['Cache-Control'] = 'no-cache';
-    }
-
-    res.writeHead(200, headers);
-    fs.createReadStream(filePath).pipe(res);
-  });
-}
+const PORT = 5173;
+const NEXT_PORT = 3000;
 
 const server = http.createServer((req, res) => {
-  let reqUrl = req.url.split('?')[0];
-  if (reqUrl === '/') reqUrl = '/index.html';
+  // Try proxying to Next.js dev server on port 3000
+  const options = {
+    hostname: '127.0.0.1',
+    port: NEXT_PORT,
+    path: req.url,
+    method: req.method,
+    headers: { ...req.headers, host: `localhost:${PORT}` }
+  };
 
-  const safePath = path.normalize(reqUrl).replace(/^(\.\.[\/\\])+/, '');
-  const targetPath = path.join(ROOT_DIR, safePath);
+  const proxyReq = http.request(options, (proxyRes) => {
+    res.writeHead(proxyRes.statusCode, proxyRes.headers);
+    proxyRes.pipe(res);
+  });
 
-  if (!targetPath.startsWith(ROOT_DIR)) {
-    res.writeHead(403, { 'Content-Type': 'text/plain' });
-    res.end('403 Forbidden');
-    return;
-  }
+  proxyReq.on('error', () => {
+    // Next.js dev server starting or momentarily unreachable
+    res.writeHead(503, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<!DOCTYPE html><html><body style="font-family:sans-serif;text-align:center;padding:50px;"><h2>Starting ProNirmaan Server...</h2><p>Please wait a moment and refresh.</p></body></html>');
+  });
 
-  serveFile(req, res, targetPath);
+  req.pipe(proxyReq);
 });
 
-function tryListen(ports, index = 0) {
-  if (index >= ports.length) {
-    console.error('No available ports found.');
-    process.exit(1);
+// Support WebSockets (Next.js HMR)
+server.on('upgrade', (req, socket, head) => {
+  const proxySocket = net.connect(NEXT_PORT, '127.0.0.1', () => {
+    proxySocket.write(
+      `${req.method} ${req.url} HTTP/${req.httpVersion}\r\n` +
+      Object.entries(req.headers).map(([k, v]) => `${k}: ${v}`).join('\r\n') +
+      '\r\n\r\n'
+    );
+    proxySocket.write(head);
+    proxySocket.pipe(socket);
+    socket.pipe(proxySocket);
+  });
+  proxySocket.on('error', () => socket.destroy());
+  socket.on('error', () => proxySocket.destroy());
+});
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n=================================================`);
+  console.log(`🚀 ProNirmaan Unified Multipage Server Running!`);
+  console.log(`🌐 Local Link: http://localhost:${PORT}`);
+  console.log(`🔗 Proxied to Next.js (port ${NEXT_PORT}) with local static fallback`);
+  console.log(`=================================================\n`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} in use.`);
+  } else {
+    console.error('Server error:', err);
   }
-
-  const port = ports[index];
-  server.listen(port, '0.0.0.0', () => {
-    console.log(`\n=================================================`);
-    console.log(`🚀 High-Quality Scroll Animation Server Running!`);
-    console.log(`🌐 Local Link: http://localhost:${port}`);
-    console.log(`=================================================\n`);
-  });
-
-  server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.log(`Port ${port} in use, trying next port...`);
-      tryListen(ports, index + 1);
-    } else {
-      console.error('Server error:', err);
-    }
-  });
-}
-
-tryListen(PREFERRED_PORTS);
+});

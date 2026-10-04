@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Check, Calculator, Building, Hammer, Compass, Truck } from 'lucide-react';
+import { X, Check, Calculator, Building, Hammer, Compass, Truck, MessageSquare, ArrowRight } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -12,34 +12,67 @@ interface QuoteModalProps {
 export default function QuoteModal({
   isOpen,
   onClose,
-  defaultService = 'construction',
+  defaultService = 'civil-construction',
 }: QuoteModalProps) {
-  const [projectType, setProjectType] = useState<string>(defaultService);
-  const [squareFootage, setSquareFootage] = useState<number>(15000);
-  const [timeframe, setTimeframe] = useState<string>('3-6 months');
+  const [workType, setWorkType] = useState<string>(defaultService);
+  const [approxScale, setApproxScale] = useState<string>('5000 - 25000 sq ft');
+  const [timeframe, setTimeframe] = useState<string>('immediate');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const projectTypes = [
-    { id: 'construction', label: 'Commercial Construction', icon: Building, baseCost: 180 },
-    { id: 'renovation', label: 'Commercial Renovation', icon: Hammer, baseCost: 120 },
-    { id: 'planning', label: 'Pre-Construction & BIM', icon: Compass, baseCost: 25 },
-    { id: 'concrete-works', label: 'Concrete & Heavy Civil', icon: Truck, baseCost: 95 },
+  const workTypes = [
+    { id: 'civil-construction', label: 'Civil Construction & Earthwork', icon: Building },
+    { id: 'controlled-demolition', label: 'Controlled Demolition (Mechanical/Manual)', icon: Hammer },
+    { id: 'plant-dismantling', label: 'Industrial Plant & Factory Dismantling', icon: Truck },
+    { id: 'diamond-core-cutting', label: 'Diamond Core Cutting & Wire Sawing', icon: Compass },
+    { id: 'silent-demolition', label: 'Chemical Rock Splitting / Silent Demolition', icon: Hammer },
+    { id: 'heavy-equipment-rental', label: 'Heavy Equipment Rental (Tata Hitachi EX210)', icon: Truck },
+    { id: 'deep-excavation', label: 'Deep Excavation, Trenching & Piling', icon: Truck },
+    { id: 'structural-retrofitting', label: 'Structural Retrofitting & Repair', icon: Building },
+    { id: 'road-infrastructure', label: 'Road & Infrastructure Development', icon: Compass },
+    { id: 'concrete-breaking', label: 'Concrete Breaking & Debris Hauling', icon: Hammer },
+    { id: 'site-survey', label: 'Site Surveying & Engineering Consultation', icon: Compass },
   ];
 
-  const currentType = projectTypes.find((p) => p.id === projectType) || projectTypes[0];
-  const estimatedMin = Math.round(squareFootage * currentType.baseCost * 0.85);
-  const estimatedMax = Math.round(squareFootage * currentType.baseCost * 1.15);
+  const currentWork = workTypes.find((p) => p.id === workType) || workTypes[0];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setReferenceId(`STW-${Math.floor(100000 + Math.random() * 900000)}`);
+    setIsSubmitting(true);
+
+    try {
+      // Submit via Web3Forms endpoint
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'YOUR_ACCESS_KEY_HERE', // or standard webhook
+          subject: `New ProNirmaan RFP: ${currentWork.label} from ${name}`,
+          name,
+          email,
+          phone,
+          location: city,
+          work_type: currentWork.label,
+          project_scale: approxScale,
+          timeline: timeframe,
+          details: notes,
+        }),
+      });
+    } catch {
+      // Graceful fallback
+    }
+
+    const ref = `PN-${Math.floor(100000 + Math.random() * 900000)}`;
+    setReferenceId(ref);
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -48,25 +81,32 @@ export default function QuoteModal({
     onClose();
   };
 
+  const handleWhatsAppDirect = () => {
+    const message = encodeURIComponent(
+      `Hello ProNirmaan Solutions,\n\nI want to request an RFP / Quote:\n• Work Type: ${currentWork.label}\n• Approx Scale: ${approxScale}\n• Location: ${city || 'Mumbai / Maharashtra'}\n• Name: ${name}\n• Phone: ${phone}\n• Details: ${notes}`
+    );
+    window.open(`https://wa.me/919594511900?text=${message}`, '_blank');
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-stone-200 relative">
+      <div className="bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-stone-200 relative rounded-3xl overflow-hidden">
         {/* Header */}
         <div className="bg-[#1c2938] text-white p-6 flex items-center justify-between sticky top-0 z-10 border-b border-slate-700">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2 h-2 bg-[#0f8a3c] rounded-full" />
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#0f8a3c]">
-                ProNirmaan Solutions Estimator
+                ProNirmaan Estimator & Tender Desk
               </span>
             </div>
             <h3 className="font-heading font-black text-xl sm:text-2xl uppercase tracking-tight">
-              Request Project Quote
+              Request Project Bid / Estimation
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-2 cursor-pointer transition-colors"
+            className="text-slate-400 hover:text-white p-2 rounded-full hover:bg-white/10 cursor-pointer transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
@@ -78,54 +118,63 @@ export default function QuoteModal({
               <Check className="w-8 h-8 stroke-[2.5]" />
             </div>
             <h4 className="font-heading font-bold text-2xl text-stone-900 mb-2">
-              Quote Request Received
+              Bid Inquiry Successfully Registered
             </h4>
-            <p className="text-sm text-stone-600 max-w-md mx-auto mb-6">
-              Thank you, <span className="font-semibold">{name || 'Client'}</span>. A ProNirmaan Senior Project Estimator will review your specifications and reach out at <span className="font-semibold">{email || 'your email'}</span> within 24 business hours.
+            <p className="text-sm text-stone-600 max-w-md mx-auto mb-6 font-body">
+              Thank you, <span className="font-semibold text-stone-900">{name || 'Client'}</span>. An Er. Project Manager will inspect your scope specifications and contact you directly at <span className="font-semibold text-stone-900">{phone || email}</span> within 24 hours.
             </p>
 
-            <div className="bg-[#f6f4f0] p-4 text-stone-800 text-xs text-left max-w-md mx-auto mb-6 space-y-1">
-              <p><strong>Service:</strong> {currentType.label}</p>
-              <p><strong>Scale:</strong> {squareFootage.toLocaleString()} sq. ft.</p>
-              <p><strong>Estimated Range:</strong> ${estimatedMin.toLocaleString()} - ${estimatedMax.toLocaleString()}</p>
-              <p><strong>Reference ID:</strong> {referenceId}</p>
+            <div className="bg-[#f6f4f0] p-4 text-stone-800 text-xs text-left max-w-md mx-auto mb-6 space-y-1.5 font-body">
+              <p><strong>Work Division:</strong> {currentWork.label}</p>
+              <p><strong>Approx Scale:</strong> {approxScale}</p>
+              <p><strong>Site Location:</strong> {city || 'Maharashtra'}</p>
+              <p><strong>Tender Ref ID:</strong> <span className="font-mono text-[#0f8a3c] font-bold">{referenceId}</span></p>
             </div>
 
-            <button
-              onClick={handleReset}
-              className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-            >
-              Done
-            </button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={handleWhatsAppDirect}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Instant WhatsApp Connect</span>
+              </button>
+              <button
+                onClick={handleReset}
+                className="w-full sm:w-auto bg-stone-800 hover:bg-stone-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
-            {/* Step 1: Select Type */}
+            {/* Step 1: Select Work Division */}
             <div>
               <label className="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-2">
-                1. Select Construction Division
+                1. Select Work Division / Service
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {projectTypes.map((type) => {
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-48 overflow-y-auto pr-1">
+                {workTypes.map((type) => {
                   const Icon = type.icon;
-                  const isSelected = projectType === type.id;
+                  const isSelected = workType === type.id;
                   return (
                     <button
                       key={type.id}
                       type="button"
-                      onClick={() => setProjectType(type.id)}
-                      className={`flex items-center gap-3 p-3.5 border text-left cursor-pointer transition-all ${
+                      onClick={() => setWorkType(type.id)}
+                      className={`flex items-center gap-2.5 p-3 border text-left cursor-pointer transition-all ${
                         isSelected
                           ? 'border-[#0f8a3c] bg-[#0f8a3c]/5 text-stone-900 shadow-xs'
                           : 'border-stone-200 hover:border-stone-400 text-stone-600'
                       }`}
                     >
                       <Icon
-                        className={`w-5 h-5 shrink-0 ${
+                        className={`w-4 h-4 shrink-0 ${
                           isSelected ? 'text-[#0f8a3c]' : 'text-stone-400'
                         }`}
                       />
-                      <span className="text-xs font-bold uppercase tracking-wide">
+                      <span className="text-[11px] font-bold uppercase tracking-wide leading-tight">
                         {type.label}
                       </span>
                     </button>
@@ -134,54 +183,45 @@ export default function QuoteModal({
               </div>
             </div>
 
-            {/* Step 2: Scale & Footage */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-xs font-bold text-stone-800 uppercase tracking-wider">
-                  2. Approximate Footprint
+            {/* Step 2: Scale & Timeline */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-2">
+                  2. Approximate Scale / Area
                 </label>
-                <span className="font-heading font-black text-sm text-[#0f8a3c]">
-                  {squareFootage.toLocaleString()} SQ. FT.
-                </span>
+                <select
+                  value={approxScale}
+                  onChange={(e) => setApproxScale(e.target.value)}
+                  className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs bg-white text-stone-700 font-medium"
+                >
+                  <option value="Under 5,000 sq ft">Under 5,000 sq ft / Minor Scope</option>
+                  <option value="5,000 - 25,000 sq ft">5,000 - 25,000 sq ft (Medium)</option>
+                  <option value="25,000 - 1,00,000 sq ft">25,000 - 1,00,000 sq ft (Large)</option>
+                  <option value="Over 1,00,000 sq ft">Over 1,00,000 sq ft / Industrial Complex</option>
+                  <option value="Tata Hitachi EX210 Rental (Daily/Monthly)">Tata Hitachi EX210 Rental (Daily / Monthly)</option>
+                </select>
               </div>
-              <input
-                type="range"
-                min="1000"
-                max="100000"
-                step="1000"
-                value={squareFootage}
-                onChange={(e) => setSquareFootage(Number(e.target.value))}
-                className="w-full h-2 bg-stone-200 accent-[#0f8a3c] rounded-lg cursor-pointer"
-              />
-              <div className="flex justify-between text-[11px] text-stone-400 mt-1">
-                <span>1,000 sq ft</span>
-                <span>50,000 sq ft</span>
-                <span>100,000+ sq ft</span>
+              <div>
+                <label className="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-2">
+                  3. Commencement Timeline
+                </label>
+                <select
+                  value={timeframe}
+                  onChange={(e) => setTimeframe(e.target.value)}
+                  className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs bg-white text-stone-700 font-medium"
+                >
+                  <option value="immediate">Immediate (Within 7-15 Days)</option>
+                  <option value="1-3 months">1 - 3 Months</option>
+                  <option value="3-6 months">3 - 6 Months</option>
+                  <option value="tender">Tender Evaluation / DPR Stage</option>
+                </select>
               </div>
             </div>
 
-            {/* Step 3: Preliminary Estimate Banner */}
-            <div className="bg-[#f6f4f0] border-l-4 border-[#0f8a3c] p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Calculator className="w-5 h-5 text-[#0f8a3c]" />
-                <div>
-                  <span className="text-[10px] font-bold uppercase text-stone-500 tracking-wider block">
-                    Estimated Budget Bracket
-                  </span>
-                  <span className="font-heading font-black text-lg text-stone-900">
-                    ${(estimatedMin / 1000).toFixed(0)}k – ${(estimatedMax / 1000).toFixed(0)}k
-                  </span>
-                </div>
-              </div>
-              <span className="text-[10px] text-stone-500 uppercase tracking-wider">
-                Benchmark Rates
-              </span>
-            </div>
-
-            {/* Step 4: Contact Info */}
+            {/* Step 3: Contact Info */}
             <div className="space-y-4">
               <label className="block text-xs font-bold text-stone-800 uppercase tracking-wider">
-                3. Your Contact Details
+                4. Your Contact & Site Location
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -189,20 +229,20 @@ export default function QuoteModal({
                   <input
                     type="text"
                     required
-                    placeholder="Full Name *"
+                    placeholder="Full Name / Company Name *"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs"
+                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs font-body"
                   />
                 </div>
                 <div>
                   <input
-                    type="email"
+                    type="tel"
                     required
-                    placeholder="Work Email *"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs"
+                    placeholder="Mobile Number (+91) *"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs font-body"
                   />
                 </div>
               </div>
@@ -210,53 +250,64 @@ export default function QuoteModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs"
+                    type="email"
+                    placeholder="Official Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs font-body"
                   />
                 </div>
                 <div>
-                  <select
-                    value={timeframe}
-                    onChange={(e) => setTimeframe(e.target.value)}
-                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs bg-white text-stone-700"
-                  >
-                    <option value="immediate">Start Timeline: Immediate (Under 30 Days)</option>
-                    <option value="3-6 months">Start Timeline: 3 - 6 Months</option>
-                    <option value="6-12 months">Start Timeline: 6 - 12 Months</option>
-                    <option value="feasibility">Feasibility & Preliminary RFP only</option>
-                  </select>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Site Location / City (e.g. Mumbai, Thane, Navi Mumbai) *"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs font-body"
+                  />
                 </div>
               </div>
 
               <div>
                 <textarea
                   rows={3}
-                  placeholder="Tell us about the project site, address or specific scope..."
+                  placeholder="Specific scope details, site constraints, BOQ requirement, or demolition dimensions..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs"
+                  className="w-full text-xs p-3 border border-stone-300 focus:outline-none focus:border-[#0f8a3c] rounded-xs font-body"
                 />
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-end gap-3 pt-2 border-t border-stone-200">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-stone-200">
               <button
                 type="button"
-                onClick={onClose}
-                className="px-5 py-2.5 text-xs font-bold uppercase text-stone-600 hover:text-stone-900 cursor-pointer"
+                onClick={handleWhatsAppDirect}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase text-emerald-700 hover:text-emerald-800 cursor-pointer"
               >
-                Cancel
+                <MessageSquare className="w-4 h-4" />
+                <span>Or Share via WhatsApp Directly</span>
               </button>
-              <button
-                type="submit"
-                className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3 text-xs font-bold uppercase tracking-wider shadow-md transition-colors cursor-pointer"
-              >
-                Submit RFP / Quote Request
-              </button>
+
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-4 py-2.5 text-xs font-bold uppercase text-stone-600 hover:text-stone-900 cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-7 py-3 text-xs font-bold uppercase tracking-wider shadow-md transition-colors cursor-pointer inline-flex items-center gap-2"
+                >
+                  <span>{isSubmitting ? 'Submitting...' : 'Submit Tender RFP'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </form>
         )}

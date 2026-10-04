@@ -1,0 +1,7 @@
+# robots.txt for https://pronirmaansolutions.com
+User-agent: *
+Allow: /
+
+# Block nothing public. Disallow build/asset internals if any are added later.
+
+Sitemap: https://pronirmaansolutions.com/sitemap.xml

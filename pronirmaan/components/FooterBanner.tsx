@@ -1,205 +1,234 @@
 'use client';
 
 import React from 'react';
-import StonewayLogo from './StonewayLogo';
-import { MapPin, Phone, Mail, ArrowUpRight, Shield, Award, HardHat } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Youtube } from 'lucide-react';
 
 interface FooterBannerProps {
-  onOpenQuote: () => void;
-  onNavigate: (section: string) => void;
+  onOpenQuote?: () => void;
+  onNavigate?: (section: string) => void;
 }
 
 export default function FooterBanner({
   onOpenQuote,
   onNavigate,
 }: FooterBannerProps) {
+  const handleNav = (sec: string) => {
+    if (onNavigate) {
+      onNavigate(sec);
+    } else {
+      const el = document.getElementById(sec);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <footer id="contact" className="relative bg-[#131c26] text-white overflow-hidden">
-      {/* Dynamic Faceted Geometric Top Silhouette matching the screenshot */}
-      <div className="relative pt-12 pb-14 border-b border-slate-800">
-        {/* Silhouette overlay with architectural crane/scaffolding skyline */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-          <svg
-            viewBox="0 0 1440 200"
-            fill="none"
-            preserveAspectRatio="none"
-            className="w-full h-full text-slate-700 stroke-current stroke-[1.2]"
-          >
-            {/* Structural crane 1 */}
-            <line x1="820" y1="180" x2="880" y2="40" />
-            <line x1="880" y1="40" x2="1020" y2="40" />
-            <line x1="880" y1="40" x2="820" y2="20" />
-            <line x1="850" y1="40" x2="820" y2="20" />
-            <line x1="950" y1="40" x2="950" y2="90" strokeDasharray="3 3" />
-
-            {/* Structural crane 2 */}
-            <line x1="1200" y1="180" x2="1240" y2="60" />
-            <line x1="1240" y1="60" x2="1360" y2="60" />
-            <line x1="1240" y1="60" x2="1200" y2="45" />
-
-            {/* Building framework wireframe */}
-            <rect x="680" y="70" width="80" height="130" strokeDasharray="4 4" />
-            <line x1="680" y1="100" x2="760" y2="100" />
-            <line x1="680" y1="130" x2="760" y2="130" />
-            <line x1="680" y1="160" x2="760" y2="160" />
-
-            <rect x="1080" y="90" width="70" height="110" strokeDasharray="4 4" />
-            <line x1="1080" y1="120" x2="1150" y2="120" />
-            <line x1="1080" y1="150" x2="1150" y2="150" />
-          </svg>
-        </div>
-
-        {/* The Exact Banner Layout from the Screenshot */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          {/* Left: BUILDING BETTER / FROM THE GROUND UP */}
-          <div>
-            <div className="w-10 h-[2px] bg-[#0f8a3c] mb-3" />
-            <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight leading-none mb-2">
-              <span className="text-white">BUILDING </span>
-              <span className="text-[#0f8a3c]">BETTER</span>
-            </h2>
-            <p className="text-xs sm:text-sm font-semibold text-slate-400 tracking-[0.25em] uppercase font-condensed">
-              FROM THE GROUND UP
-            </p>
-          </div>
-
-          {/* Right: QUALITY / PEOPLE / PROGRESS */}
-          <div className="text-left md:text-right">
-            <p className="text-xs sm:text-sm font-bold text-slate-300 tracking-[0.22em] uppercase font-condensed">
-              <span className="hover:text-white transition-colors cursor-default">QUALITY</span>
-              <span className="mx-2 sm:mx-3 text-[#0f8a3c] font-light">/</span>
-              <span className="hover:text-white transition-colors cursor-default">PEOPLE</span>
-              <span className="mx-2 sm:mx-3 text-[#0f8a3c] font-light">/</span>
-              <span className="hover:text-white transition-colors cursor-default">PROGRESS</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Expanded Full-Site Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Col 1: Brand & Bio */}
-          <div>
-            <StonewayLogo lightMode size="md" className="mb-4" />
-            <p className="text-xs text-slate-400 leading-relaxed mb-6">
-              Leading civil infrastructure, heavy earthwork, and precision controlled demolition with institutional safety, dedicated heavy fleets, and engineering mastery.
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xs bg-slate-800 flex items-center justify-center text-[#0f8a3c] text-xs font-bold" title="OSHA Certified">
-                <HardHat className="w-4 h-4" />
+    <footer id="footer" className="relative bg-[#0e1622] text-white pt-16 pb-12 overflow-hidden border-t border-slate-800/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          
+          {/* Column 1: Brand & Logo + Bio (lg:col-span-4) */}
+          <div className="lg:col-span-4">
+            {/* White/Inverted Brand Area: Logo + Vertical Line + ISO Badge */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="relative h-10 w-44">
+                <Image
+                  src="/logo.png"
+                  alt="Pronirmaan Solutions"
+                  fill
+                  className="object-contain object-left brightness-0 invert"
+                />
               </div>
-              <div className="w-8 h-8 rounded-xs bg-slate-800 flex items-center justify-center text-[#0f8a3c] text-xs font-bold" title="AGC Member">
-                <Award className="w-4 h-4" />
-              </div>
-              <div className="w-8 h-8 rounded-xs bg-slate-800 flex items-center justify-center text-[#0f8a3c] text-xs font-bold" title="ISO 9001 Compliant">
-                <Shield className="w-4 h-4" />
+
+              <div className="h-7 w-[1.5px] bg-slate-700 shrink-0" />
+
+              <div className="relative h-9 w-14 shrink-0">
+                <Image
+                  src="/iso/iso-.avif"
+                  alt="ISO Verified"
+                  fill
+                  className="object-contain brightness-0 invert opacity-90"
+                />
               </div>
             </div>
+
+            <p className="text-xs sm:text-sm text-slate-400 font-body leading-relaxed max-w-sm">
+              Pronirmaan Solution is a leading infrastructure construction and demolition company services and project inspections.
+            </p>
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#0f8a3c] mb-4 font-condensed">
-              Quick Navigation
+          {/* Column 2: Services (lg:col-span-3) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-white tracking-wide mb-4">
+              Services
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-400 font-body">
               <li>
-                <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                <Link
+                  href="/construction-services"
+                  className="hover:text-white transition-colors cursor-pointer block"
                 >
-                  Home
-                </button>
+                  All Types of Civil Work
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('company')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                <Link
+                  href="/demolition-services"
+                  className="hover:text-white transition-colors cursor-pointer block"
                 >
-                  Company & Story
-                </button>
+                  Control Demolition
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                <Link
+                  href="/demolition-services"
+                  className="hover:text-white transition-colors cursor-pointer block"
                 >
-                  Commercial Services
-                </button>
+                  Dismantling All Types of MS &amp; RCC Structure
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('projects')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                <Link
+                  href="/demolition-services"
+                  className="hover:text-white transition-colors cursor-pointer block"
                 >
-                  Project Portfolio
-                </button>
+                  Concrete Cutting with Diamond Wire Rope
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('team')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                <Link
+                  href="/demolition-services"
+                  className="hover:text-white transition-colors cursor-pointer block"
                 >
-                  Leadership Team
-                </button>
+                  Building &amp; Plant Demolition
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Regional HQ */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#0f8a3c] mb-4 font-condensed">
-              Regional Operations
+          {/* Column 3: Contact Information (lg:col-span-3) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-white tracking-wide mb-4">
+              Contact Information
             </h4>
-            <div className="space-y-3 text-xs text-slate-400">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#0f8a3c] shrink-0 mt-0.5" />
-                <span>1234 Maple Ave, Austin, TX 78701</span>
+            <div className="space-y-4 text-xs sm:text-sm text-slate-300 font-body">
+              {/* Address */}
+              <div className="flex items-start gap-3">
+                <div className="w-7 h-7 rounded-full border border-[#0f8a3c] flex items-center justify-center text-[#0f8a3c] shrink-0 mt-0.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                </div>
+                <span className="leading-snug">
+                  Shop No 7, 2 floor, M.k compound, near Maxus Cinema Jarimari, Kurla Andheri road, Mumbai -400072
+                </span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#0f8a3c] shrink-0" />
-                <span>+1 (512) 555-0199</span>
+
+              {/* Phone */}
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-full border border-[#0f8a3c] flex items-center justify-center text-[#0f8a3c] shrink-0">
+                  <Phone className="w-3.5 h-3.5" />
+                </div>
+                <a
+                  href="tel:+919594511900"
+                  className="hover:text-white transition-colors"
+                >
+                  +91 9594511900 / 9833366632
+                </a>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#0f8a3c] shrink-0" />
-                <span>contact@pronirmaan.com</span>
+
+              {/* Email */}
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-full border border-[#0f8a3c] flex items-center justify-center text-[#0f8a3c] shrink-0">
+                  <Mail className="w-3.5 h-3.5" />
+                </div>
+                <a
+                  href="mailto:contact@pronirmaansolutions.com"
+                  className="hover:text-white transition-colors truncate"
+                >
+                  contact@pronirmaansolutions.com
+                </a>
               </div>
-              <p className="text-[11px] text-slate-500 pt-2">
-                Mon - Fri: 6:30 AM - 6:00 PM CST<br />
-                Emergency Site Response: 24/7
-              </p>
             </div>
           </div>
 
-          {/* Col 4: Project Estimator CTA */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#0f8a3c] mb-4 font-condensed">
-              Start Your Build
+          {/* Column 4: Social Media (lg:col-span-2) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-white tracking-wide mb-4">
+              Social Media
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Schedule a preliminary site review or request competitive bids for your upcoming RFP.
-            </p>
-            <button
-              onClick={onOpenQuote}
-              className="w-full inline-flex items-center justify-center gap-2 bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-5 py-3 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-md"
-            >
-              <span>REQUEST A BID</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-9 h-9 rounded-full border border-slate-700 bg-slate-800/40 flex items-center justify-center text-slate-300 hover:text-white hover:border-[#0f8a3c] hover:bg-[#0f8a3c] transition-all cursor-pointer"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                className="w-9 h-9 rounded-full border border-slate-700 bg-slate-800/40 flex items-center justify-center text-slate-300 hover:text-white hover:border-[#0f8a3c] hover:bg-[#0f8a3c] transition-all cursor-pointer"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-9 h-9 rounded-full border border-slate-700 bg-slate-800/40 flex items-center justify-center text-slate-300 hover:text-white hover:border-[#0f8a3c] hover:bg-[#0f8a3c] transition-all cursor-pointer"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-9 h-9 rounded-full border border-slate-700 bg-slate-800/40 flex items-center justify-center text-slate-300 hover:text-white hover:border-[#0f8a3c] hover:bg-[#0f8a3c] transition-all cursor-pointer"
+              >
+                <Youtube className="w-4 h-4" />
+              </a>
+            </div>
           </div>
+
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <p>© {new Date().getFullYear()} ProNirmaan Solutions. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span className="hover:text-slate-400 cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-slate-400 cursor-pointer">Terms of Service</span>
-            <span className="hover:text-slate-400 cursor-pointer">Safety Guidelines (OSHA)</span>
+        {/* Divider Line */}
+        <div className="border-t border-slate-800/80 my-8" />
+
+        {/* Bottom Bar: Copyright & Legal */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-body">
+          <p>© 2026 Pronirmaan Solution. All Rights Reserved.</p>
+
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-slate-400">
+            <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/terms-and-conditions" className="hover:text-slate-200 transition-colors">
+              Terms &amp; Conditions
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/cookie-policy" className="hover:text-slate-200 transition-colors">
+              Cookie Policy
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/disclaimer" className="hover:text-slate-200 transition-colors">
+              Disclaimer
+            </Link>
           </div>
         </div>
       </div>
+
     </footer>
   );
 }

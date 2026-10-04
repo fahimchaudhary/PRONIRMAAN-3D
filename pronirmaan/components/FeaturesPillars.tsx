@@ -27,12 +27,12 @@ export default function FeaturesPillars() {
       title: 'TRUSTED WORK',
       subtitle: 'Safety, Certifications & Integrity',
       description:
-        'With over 28 years of zero-incident milestone projects, our certified master craftsmen and project engineers operate under strict ISO-9001 and OSHA standards.',
-      stats: '99.8% On-Schedule Rate',
+        'With over 15+ years of zero-incident milestone projects, our certified engineers and licensed operators adhere strictly to ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 quality, environmental, and occupational safety standards.',
+      stats: '100% Zero-Incident Rate',
       bullets: [
-        'Master licensed general contractors & engineers',
-        'OSHA-compliant job sites with dedicated safety officers',
-        'Transparent daily progress logs & milestone validation',
+        'ISO 9001:2015, 14001:2015 & 45001:2018 Certified company',
+        'Certified diamond wire cutting specialists & demolition experts',
+        'Rigorous PPE protocols, hazard mapping & site barricading',
       ],
     },
     {
@@ -43,14 +43,14 @@ export default function FeaturesPillars() {
         </div>
       ),
       title: 'BUILT TO LAST',
-      subtitle: 'Structural Engineering & Longevity',
+      subtitle: 'Civil Construction & Engineering Longevity',
       description:
-        'We engineer structures meant to endure generations. From seismic-rated reinforced foundations to climate-resilient building envelopes, quality is uncompromised.',
-      stats: '50-Year Structural Assurance',
+        'We construct residential, commercial, and industrial facilities engineered for longevity. From seismic-compliant RCC foundations to precision structural fabrication, every project meets the highest Indian Standards (IS codes).',
+      stats: '500+ Landmark Deliveries',
       bullets: [
-        'ASTM-tested high-performance concrete & structural steel',
-        'Advanced thermal & moisture barrier envelope systems',
-        'Comprehensive 10-year post-construction warranty',
+        'High-grade M25-M60 concrete mixes with certified lab batch reports',
+        'Seismic Zone III/IV compliant structural reinforcement design',
+        'Turnkey execution: from excavation and plinth to final finishing',
       ],
     },
     {
@@ -61,23 +61,23 @@ export default function FeaturesPillars() {
         </div>
       ),
       title: 'SMART VALUE',
-      subtitle: 'Cost Efficiency & Clear Pricing',
+      subtitle: 'Transparent Estimation & Dedicated Equipment Fleet',
       description:
-        'Value engineering is in our DNA. We maximize your capital with direct quarry and steel mill sourcing, eliminating middleman markups without sacrificing caliber.',
-      stats: '14% Average Capital Savings',
+        'We own and deploy our proprietary heavy machinery—including Tata Hitachi EX200 LC Super excavators, diamond wire saws, and concrete crushers—eliminating intermediary rental markups.',
+      stats: '15-20% Direct Cost Savings',
       bullets: [
-        'Guaranteed maximum price (GMP) contracting models',
-        'Lean procurement with direct manufacturer supply chains',
-        'Zero surprise change orders through BIM pre-planning',
+        'Zero middleman equipment markups via our dedicated heavy fleet',
+        'Transparent itemized BOQ with zero surprise change orders',
+        'Controlled recycling and scrap buyback value optimization',
       ],
     },
   ];
 
   return (
-    <section className="relative bg-[#f6f4f0] pt-12 sm:pt-16 pb-14 border-b border-stone-200/60">
+    <section className="relative bg-[#f6f4f0] pt-12 sm:pt-16 pb-14 border-b border-stone-200/60 font-body">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 3 Value Columns with subtle vertical dividers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-300/70">
+        {/* 3 Value Pillars with soft curved cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {pillars.map((pillar) => {
             const isExpanded = selectedPillar === pillar.id;
 
@@ -87,7 +87,11 @@ export default function FeaturesPillars() {
                 onClick={() =>
                   setSelectedPillar(isExpanded ? null : pillar.id)
                 }
-                className="group flex flex-col items-center text-center px-4 sm:px-8 py-6 md:py-4 cursor-pointer transition-all duration-200 rounded-sm hover:bg-stone-200/40"
+                className={`group flex flex-col items-center text-center px-6 py-6 cursor-pointer transition-all duration-300 rounded-2xl border ${
+                  isExpanded
+                    ? 'bg-white border-[#0f8a3c] shadow-lg -translate-y-1'
+                    : 'bg-white/70 hover:bg-white border-stone-200/90 hover:border-stone-300 shadow-2xs hover:shadow-md hover:-translate-y-1'
+                }`}
               >
                 {/* Clean architectural line icon */}
                 <div className="mb-4 transform group-hover:-translate-y-1 transition-transform duration-200 text-stone-800 group-hover:text-[#0f8a3c]">
@@ -100,7 +104,7 @@ export default function FeaturesPillars() {
                 </h3>
 
                 {/* Subtle indicator hint */}
-                <span className="mt-1 text-[11px] font-medium text-stone-500 uppercase tracking-widest flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="mt-2 text-[11px] font-medium text-stone-500 uppercase tracking-widest flex items-center gap-1 opacity-70 group-hover:opacity-100 transition-opacity">
                   <Info className="w-3 h-3 text-[#0f8a3c]" /> View Standards
                 </span>
               </div>
@@ -110,10 +114,10 @@ export default function FeaturesPillars() {
 
         {/* Expandable detail card if a user clicks one of the pillars */}
         {selectedPillar && (
-          <div className="mt-8 bg-white border border-stone-300 p-6 sm:p-8 shadow-md relative animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="mt-8 bg-white border border-stone-300 p-6 sm:p-8 rounded-2xl shadow-xl relative animate-in fade-in slide-in-from-top-2 duration-200">
             <button
               onClick={() => setSelectedPillar(null)}
-              className="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-xs font-bold uppercase tracking-wider px-2 py-1 bg-stone-100 rounded-xs"
+              className="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-xs font-bold uppercase tracking-wider px-3 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full cursor-pointer transition-colors"
             >
               Close ✕
             </button>
@@ -126,14 +130,14 @@ export default function FeaturesPillars() {
                   <div className="md:col-span-2">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="w-2 h-2 bg-[#0f8a3c] rounded-full" />
-                      <span className="text-xs font-bold uppercase text-[#0f8a3c] tracking-widest">
+                      <span className="text-xs font-bold uppercase text-[#0f8a3c] tracking-widest font-heading">
                         {active.subtitle}
                       </span>
                     </div>
                     <h4 className="font-heading text-xl sm:text-2xl font-black text-stone-900 mb-3">
                       {active.title}
                     </h4>
-                    <p className="text-sm text-stone-600 leading-relaxed mb-4">
+                    <p className="text-sm text-stone-600 leading-relaxed mb-4 font-body">
                       {active.description}
                     </p>
                     <ul className="space-y-2">
@@ -149,7 +153,7 @@ export default function FeaturesPillars() {
                     </ul>
                   </div>
 
-                  <div className="bg-[#f6f4f0] border-l-4 border-[#0f8a3c] p-5 text-center flex flex-col justify-center items-center">
+                  <div className="bg-[#f6f4f0] border-l-4 border-[#0f8a3c] p-6 text-center flex flex-col justify-center items-center rounded-xl">
                     <span className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">
                       Benchmark Record
                     </span>
@@ -157,7 +161,7 @@ export default function FeaturesPillars() {
                       {active.stats}
                     </span>
                     <span className="text-[11px] text-stone-500 mt-2">
-                      Third-Party Audited (Austin Regional HQ)
+                      ISO 9001:2015 Audited (Mumbai / Thane HQ)
                     </span>
                   </div>
                 </div>
