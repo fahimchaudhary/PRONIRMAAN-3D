@@ -20,24 +20,24 @@ import {
 } from 'lucide-react';
 
 const demolitionImages = [
-  { src: '/Demolition/Image1.avif', title: 'High-Reach Excavator Breaking Concrete Slab' },
-  { src: '/Demolition/Image2.avif', title: 'Controlled Structural Beam Dismantling' },
-  { src: '/Demolition/Image3.avif', title: 'Hydraulic Breaker Crushing Reinforced Column' },
-  { src: '/Demolition/Image4.avif', title: 'Commercial Multi-Level Selective Teardown' },
-  { src: '/Demolition/Image5.avif', title: 'Industrial Factory Floor Concrete Pulverizing' },
-  { src: '/Demolition/Image6.avif', title: 'Debris Sorting, Segregation & Material Hauling' },
-  { src: '/Demolition/Image7.avif', title: 'Heavy Foundation Breaking with Hydraulic Attachment' },
-  { src: '/Demolition/Image8.avif', title: 'Tata Hitachi Tracked Excavator at Active Demolition Site' },
-  { src: '/Demolition/Image9.avif', title: 'Precision Shear Cutting of Industrial Steel Truss' },
-  { src: '/Demolition/Image10.avif', title: 'Diamond Core Stitch Drilling on Heavy Shear Wall' },
-  { src: '/Demolition/Image11.avif', title: 'Silent Chemical Demolition Grout Injection Site' },
-  { src: '/Demolition/Image12.avif', title: 'Controlled Facade Stripping & Safety Netting' },
-  { src: '/Demolition/Image13.avif', title: 'Mass Concrete Rubble Crushing & Loading' },
-  { src: '/Demolition/Image14.avif', title: 'Industrial Storage Tank & Vessel Decommissioning' },
-  { src: '/Demolition/Image15.avif', title: 'Interior Strip-Out & Architectural Stripping' },
-  { src: '/Demolition/Image16.avif', title: 'Site Ground Clearing & Final Grade Restoration' },
-  { src: '/Demolition/Image17.avif', title: 'Heavy Reinforced Pedestal Demolition' },
-  { src: '/Demolition/Image18.avif', title: 'Zero-Incident Controlled Urban Demolition Completed' },
+  { thumb: '/Demolition/Image1-640w.avif', full: '/Demolition/Image1.avif', title: 'High-Reach Excavator Breaking Concrete Slab' },
+  { thumb: '/Demolition/Image2-640w.avif', full: '/Demolition/Image2.avif', title: 'Controlled Structural Beam Dismantling' },
+  { thumb: '/Demolition/Image3-640w.avif', full: '/Demolition/Image3.avif', title: 'Hydraulic Breaker Crushing Reinforced Column' },
+  { thumb: '/Demolition/Image4-640w.avif', full: '/Demolition/Image4.avif', title: 'Commercial Multi-Level Selective Teardown' },
+  { thumb: '/Demolition/Image5-640w.avif', full: '/Demolition/Image5.avif', title: 'Industrial Factory Floor Concrete Pulverizing' },
+  { thumb: '/Demolition/Image6-640w.avif', full: '/Demolition/Image6.avif', title: 'Debris Sorting, Segregation & Material Hauling' },
+  { thumb: '/Demolition/Image7-640w.avif', full: '/Demolition/Image7.avif', title: 'Heavy Foundation Breaking with Hydraulic Attachment' },
+  { thumb: '/Demolition/Image8-640w.avif', full: '/Demolition/Image8.avif', title: 'Tata Hitachi Tracked Excavator at Active Demolition Site' },
+  { thumb: '/Demolition/Image9-640w.avif', full: '/Demolition/Image9.avif', title: 'Precision Shear Cutting of Industrial Steel Truss' },
+  { thumb: '/Demolition/Image10-640w.avif', full: '/Demolition/Image10.avif', title: 'Diamond Core Stitch Drilling on Heavy Shear Wall' },
+  { thumb: '/Demolition/Image11-640w.avif', full: '/Demolition/Image11.avif', title: 'Silent Chemical Demolition Grout Injection Site' },
+  { thumb: '/Demolition/Image12-640w.avif', full: '/Demolition/Image12.avif', title: 'Controlled Facade Stripping & Safety Netting' },
+  { thumb: '/Demolition/Image13-640w.avif', full: '/Demolition/Image13.avif', title: 'Mass Concrete Rubble Crushing & Loading' },
+  { thumb: '/Demolition/Image14.avif', full: '/Demolition/Image14.avif', title: 'Industrial Storage Tank & Vessel Decommissioning' },
+  { thumb: '/Demolition/Image15.avif', full: '/Demolition/Image15.avif', title: 'Interior Strip-Out & Architectural Stripping' },
+  { thumb: '/Demolition/Image16.avif', full: '/Demolition/Image16.avif', title: 'Site Ground Clearing & Final Grade Restoration' },
+  { thumb: '/Demolition/Image17.avif', full: '/Demolition/Image17.avif', title: 'Heavy Reinforced Pedestal Demolition' },
+  { thumb: '/Demolition/Image18-640w.avif', full: '/Demolition/Image18.avif', title: 'Zero-Incident Controlled Urban Demolition Completed' },
 ];
 
 export default function DemolitionServicesPage() {
@@ -188,13 +188,15 @@ export default function DemolitionServicesPage() {
           {demolitionImages.map((img, idx) => (
             <div
               key={idx}
-              onClick={() => setLightboxImage(img.src)}
+              onClick={() => setLightboxImage(img.full || img.thumb)}
               className="group relative h-64 bg-stone-900 rounded-3xl overflow-hidden cursor-pointer border border-stone-300/80 hover:border-[#0f8a3c] transition-all shadow-xs hover:shadow-xl transform hover:-translate-y-1"
             >
               <Image
-                src={img.src}
+                src={img.thumb}
                 alt={img.title}
                 fill
+                unoptimized
+                loading="lazy"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -273,6 +275,8 @@ export default function DemolitionServicesPage() {
               src={lightboxImage}
               alt="Enlarged view"
               fill
+              unoptimized
+              priority
               className="object-contain"
             />
           </div>

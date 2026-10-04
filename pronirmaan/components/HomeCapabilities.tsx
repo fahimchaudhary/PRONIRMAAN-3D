@@ -50,7 +50,7 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
       tag: 'PROPRIETARY MACHINERY',
       title: 'Heavy Equipment & Fleet Rental',
       icon: Truck,
-      image: '/RentMachine/image.png',
+      image: '/RentMachine/image-640w.webp',
       pageUrl: '/contact',
       description:
         'Immediate mobilization of our dedicated fleet of Tata Hitachi EX210 LC excavators with rock breaker attachments, hydraulic shear cutters, and experienced certified operators.',
@@ -109,6 +109,9 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
                     src={item.image}
                     alt={item.title}
                     fill
+                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

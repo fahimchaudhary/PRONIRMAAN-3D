@@ -38,6 +38,8 @@ export default function FooterBanner({
                   src="/logo.png"
                   alt="Pronirmaan Solutions"
                   fill
+                  unoptimized
+                  loading="lazy"
                   className="object-contain object-left brightness-0 invert"
                 />
               </div>
@@ -49,6 +51,8 @@ export default function FooterBanner({
                   src="/iso/iso-.avif"
                   alt="ISO Verified"
                   fill
+                  unoptimized
+                  loading="lazy"
                   className="object-contain brightness-0 invert opacity-90"
                 />
               </div>

@@ -21,37 +21,43 @@ import {
 
 const teamCrews = [
   {
-    image: '/OurTeam/T1.avif',
+    image: '/OurTeam/T1-640w.avif',
+    full: '/OurTeam/T1.avif',
     title: 'On-site Operations Crew',
     subtitle: 'Controlled Demolition & Plant Dismantling',
     desc: 'Frontline specialists executing controlled building deconstruction, heavy steel cutting, and structural load isolation under senior safety command.',
   },
   {
-    image: '/OurTeam/T2.avif',
+    image: '/OurTeam/T2-640w.avif',
+    full: '/OurTeam/T2.avif',
     title: 'Technical Engineering Team',
     subtitle: 'Structural Analysis & CAD Planning',
     desc: 'Civil engineers responsible for feasibility studies, load distribution modeling, temporary shoring designs, and method statements.',
   },
   {
-    image: '/OurTeam/T3.avif',
+    image: '/OurTeam/T3-640w.avif',
+    full: '/OurTeam/T3.avif',
     title: 'Project Supervisors',
     subtitle: 'Site Logistics & Milestone Tracking',
     desc: 'On-ground superintendents ensuring zero-tolerance adherence to project timelines, labor safety gear, and daily client status reporting.',
   },
   {
-    image: '/OurTeam/T4.avif',
+    image: '/OurTeam/T4-640w.avif',
+    full: '/OurTeam/T4.avif',
     title: 'Heavy Machinery Operators',
     subtitle: 'Tata Hitachi Ex210, Rock Breakers & Excavators',
     desc: 'Govt-licensed, certified hydraulic plant operators with thousands of operating hours handling heavy excavators and high-reach shears.',
   },
   {
-    image: '/OurTeam/T5.avif',
+    image: '/OurTeam/T5-640w.avif',
+    full: '/OurTeam/T5.avif',
     title: 'Dismantling Specialists',
     subtitle: 'MS, PEB & Industrial Structure Removal',
     desc: 'Specialized thermal cutting and unbolting technicians handling massive boiler bays, turbine rooms, and old industrial factories.',
   },
   {
-    image: '/OurTeam/T6.avif',
+    image: '/OurTeam/T6-640w.avif',
+    full: '/OurTeam/T6.avif',
     title: 'Site Safety Crew',
     subtitle: 'OSHA & ISO 45001 Compliance Officers',
     desc: 'Dedicated safety marshals managing dust suppression water mist cannons, perimeter barricading, and hazardous substance protocols.',
@@ -187,12 +193,15 @@ export default function OurTeamPage() {
                 {/* Photo Area */}
                 <div
                   className="relative h-64 w-full bg-stone-900 cursor-pointer overflow-hidden rounded-t-3xl"
-                  onClick={() => setActiveModalImg({ src: crew.image, title: crew.title })}
+                  onClick={() => setActiveModalImg({ src: crew.full || crew.image, title: crew.title })}
                 >
                   <Image
                     src={crew.image}
                     alt={crew.title}
                     fill
+                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-3">
@@ -275,9 +284,12 @@ export default function OurTeamPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10">
               <div className="lg:col-span-6 relative h-72 sm:h-96 w-full bg-stone-900 rounded-2xl overflow-hidden shadow-sm">
                 <Image
-                  src="/RentMachine/image.png"
+                  src="/RentMachine/image-640w.webp"
                   alt="Tata Hitachi Ex210 LC Excavator ProNirmaan"
                   fill
+                  unoptimized
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute top-4 left-4 bg-[#0f8a3c] text-white px-3.5 py-1 font-heading font-bold text-xs uppercase tracking-wider rounded-full shadow-xs">
@@ -354,6 +366,8 @@ export default function OurTeamPage() {
                 src={activeModalImg.src}
                 alt={activeModalImg.title}
                 fill
+                unoptimized
+                priority
                 className="object-contain"
               />
             </div>

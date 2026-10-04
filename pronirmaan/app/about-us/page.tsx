@@ -292,7 +292,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Section 2: Leadership Team */}
-        <section className="bg-white border-y border-stone-200 py-16 lg:py-20">
+        <section id="leadership" className="bg-white border-y border-stone-200 py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="font-heading font-bold text-xs uppercase tracking-widest text-[#0f8a3c] block mb-2">
@@ -308,24 +308,22 @@ export default function AboutUsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {leadership.map((leader, i) => (
-                <div key={i} className="bg-[#f6f4f0] border border-stone-200/90 p-6 sm:p-7 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div key={i} className="bg-[#f6f4f0] border border-stone-200/90 p-6 sm:p-8 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
                   <div>
-                    {/* Executive Initial & Badge */}
-                    <div className="flex items-center gap-4 mb-5">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0f8a3c] to-[#0c7031] text-white font-heading font-black text-xl flex items-center justify-center shadow-md shrink-0">
-                        {leader.name.replace('Mr. ', '').split(' ').map((n) => n[0]).join('')}
-                      </div>
-                      <div>
-                        <h3 className="font-heading font-bold text-lg text-stone-900 tracking-tight leading-tight">
-                          {leader.name}
-                        </h3>
-                        <div className="font-heading font-semibold text-xs text-[#0f8a3c] uppercase tracking-wider mt-0.5">
-                          {leader.role}
-                        </div>
-                      </div>
+                    {/* Executive Icon matching screenshot */}
+                    <div className="w-13 h-13 rounded-2xl bg-[#eaf6ed] border border-[#cbeed8] flex items-center justify-center mb-5 text-[#0f8a3c] group-hover:scale-105 transition-transform shadow-2xs">
+                      <Users className="w-6 h-6 stroke-[2.2]" />
                     </div>
 
-                    <p className="font-body text-xs sm:text-sm text-stone-600 leading-relaxed pt-2 border-t border-stone-300/60">
+                    <h3 className="font-heading font-black text-xl text-stone-900 tracking-tight leading-snug">
+                      {leader.name}
+                    </h3>
+
+                    <div className="font-heading font-bold text-xs text-[#0f8a3c] uppercase tracking-wider mt-1.5 mb-5 font-nav">
+                      {leader.role}
+                    </div>
+
+                    <p className="font-body text-xs sm:text-sm text-stone-600 leading-relaxed pt-4 border-t border-stone-300/60">
                       {leader.bio}
                     </p>
                   </div>
@@ -439,6 +437,8 @@ export default function AboutUsPage() {
                       src="/certificates/iso-9001.avif"
                       alt="ISO 9001:2015 Certificate"
                       fill
+                      unoptimized
+                      loading="lazy"
                       className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
@@ -468,6 +468,8 @@ export default function AboutUsPage() {
                       src="/certificates/iso-45001.avif"
                       alt="ISO 45001:2018 Certificate"
                       fill
+                      unoptimized
+                      loading="lazy"
                       className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
@@ -541,6 +543,8 @@ export default function AboutUsPage() {
                 src={activeCert.src}
                 alt={activeCert.title}
                 fill
+                unoptimized
+                priority
                 className="object-contain p-2"
                 sizes="(max-width: 1024px) 90vw, 800px"
               />

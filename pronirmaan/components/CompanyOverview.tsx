@@ -72,7 +72,7 @@ export default function CompanyOverview() {
               </Link>
 
               <Link
-                href="/our-team"
+                href="/about-us#leadership"
                 className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 px-6 py-3.5 rounded-xl font-bold tracking-wider text-xs uppercase transition-all shadow-2xs font-nav"
               >
                 <span>MEET LEADERSHIP &amp; PARTNERS</span>
@@ -88,9 +88,12 @@ export default function CompanyOverview() {
               <div className="relative rounded-3xl overflow-hidden border border-stone-300 shadow-2xl bg-stone-900">
                 <div className="relative h-[380px] sm:h-[440px] w-full">
                   <Image
-                    src="/Construction_projects/IMG-20260207-WA0004.avif"
+                    src="/Construction_projects/IMG-20260207-WA0004-640w.avif"
                     alt="ProNirmaan Heavy Civil Construction"
                     fill
+                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -120,6 +123,8 @@ export default function CompanyOverview() {
                     src="/iso/iso-.avif"
                     alt="ISO Certified"
                     fill
+                    unoptimized
+                    loading="lazy"
                     className="object-contain"
                   />
                 </div>

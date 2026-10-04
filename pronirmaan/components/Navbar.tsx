@@ -58,6 +58,7 @@ export default function Navbar({
                 alt="ProNirmaan Solutions"
                 fill
                 priority
+                unoptimized
                 className="object-contain object-left"
               />
             </div>
@@ -73,6 +74,7 @@ export default function Navbar({
               alt="ISO Verified"
               fill
               priority
+              unoptimized
               className="object-contain"
             />
           </div>
@@ -208,6 +210,7 @@ export default function Navbar({
                         alt="ProNirmaan Solutions Logo"
                         fill
                         priority
+                        unoptimized
                         className="object-contain"
                       />
                     </div>
@@ -277,6 +280,8 @@ export default function Navbar({
                     src="/iso/iso-.avif"
                     alt="ISO Verified"
                     fill
+                    unoptimized
+                    loading="lazy"
                     className="object-contain"
                   />
                 </div>

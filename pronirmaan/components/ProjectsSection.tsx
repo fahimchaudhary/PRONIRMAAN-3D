@@ -23,7 +23,7 @@ const projectsList: Project[] = [
     categoryLabel: 'Civil Construction',
     location: 'Mumbai, Maharashtra',
     desc: 'Multi-story commercial framing with deep foundation piling and turnkey structural execution.',
-    image: '/portfolio/apartment.avif',
+    image: '/portfolio/apartment-640w.avif',
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const projectsList: Project[] = [
     categoryLabel: 'Plant Dismantling',
     location: 'Gujarat Industrial Corridor',
     desc: '7-meter heavy steel bunker and 3-column top structure dismantled safely without downtime to adjacent units.',
-    image: '/portfolio/desmelting.avif',
+    image: '/portfolio/desmelting-640w.avif',
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const projectsList: Project[] = [
     categoryLabel: 'Controlled Demolition',
     location: 'Gujarat',
     desc: 'High-precision mechanical demolition using excavator-mounted shear cutters and dust misting cannons.',
-    image: '/portfolio/workers_tanks.avif',
+    image: '/portfolio/workers_tanks-640w.avif',
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const projectsList: Project[] = [
     categoryLabel: 'Civil Works',
     location: 'Mumbai, Maharashtra',
     desc: 'Heavy reinforced concrete foundation slab casting with high-tolerance laser-screed flatness standards.',
-    image: '/portfolio/construction.avif',
+    image: '/portfolio/construction-640w.avif',
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ const projectsList: Project[] = [
     categoryLabel: 'Diamond Wire Sawing',
     location: 'West Bengal',
     desc: 'Zero-vibration wire cutting through thick RCC equipment foundation blocks in an active production facility.',
-    image: '/portfolio/steel_frame.avif',
+    image: '/portfolio/steel_frame-640w.avif',
   },
 ];
 
@@ -150,6 +150,9 @@ export default function ProjectsSection() {
                   src={proj.image}
                   alt={proj.title}
                   fill
+                  unoptimized
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />

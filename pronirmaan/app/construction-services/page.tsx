@@ -19,29 +19,29 @@ import {
 } from 'lucide-react';
 
 const constructionImages = [
-  { src: '/Construction_projects/IMG-20260207-WA0000.avif', title: 'Reinforced Concrete Framework Casting' },
-  { src: '/Construction_projects/IMG-20260207-WA0002.avif', title: 'Heavy Foundation Reinforcement & Steel Tying' },
-  { src: '/Construction_projects/IMG-20260207-WA0003.avif', title: 'Deep Ground Excavation & Trench Shoring' },
-  { src: '/Construction_projects/IMG-20260207-WA0004.avif', title: 'Structural Column Erection & Alignment' },
-  { src: '/Construction_projects/IMG-20260207-WA0006.avif', title: 'Industrial Floor Slab Casting & Laser Screeding' },
-  { src: '/Construction_projects/IMG-20260207-WA0007.avif', title: 'Retaining Wall & Earth Stabilization Works' },
-  { src: '/Construction_projects/IMG-20260207-WA0008.avif', title: 'Mass Earthwork & Site Grading Operations' },
-  { src: '/Construction_projects/IMG-20260207-WA0009.avif', title: 'Substructure Waterproofing & Backfilling' },
-  { src: '/Construction_projects/IMG-20260207-WA0010.avif', title: 'Pre-Engineered Building (PEB) Structural Erection' },
-  { src: '/Construction_projects/IMG-20260207-WA0011.avif', title: 'Heavy Machinery Site Mobilization' },
-  { src: '/Construction_projects/IMG-20260207-WA0012.avif', title: 'High-Strength Concrete Pouring with Boom Placer' },
-  { src: '/Construction_projects/IMG-20260207-WA0013.avif', title: 'Underground Drainage & Utility Conduit Network' },
-  { src: '/Construction_projects/IMG-20260207-WA0014.avif', title: 'Steel Truss Assembly & Crane Lifts' },
-  { src: '/Construction_projects/IMG-20260207-WA0015.avif', title: 'Commercial Multi-Level Framing & Formwork' },
-  { src: '/Construction_projects/IMG-20260207-WA0017.avif', title: 'Highway Sub-Base Compaction & Grading' },
-  { src: '/Construction_projects/IMG-20260207-WA0018.avif', title: 'Foundational Piling Rig & Soil Stabilization' },
-  { src: '/Construction_projects/IMG-20260207-WA0019.avif', title: 'Industrial Plant Foundation Base Pour' },
-  { src: '/Construction_projects/Dismentalling work in progress.avif', title: 'Structural Civil Decommissioning & Modification' },
-  { src: '/Construction_projects/Desmelting.avif', title: 'Thermal Modification & Heavy Plant Civil Prep' },
-  { src: '/Construction_projects/Beam removed.avif', title: 'Heavy Pre-Stressed Concrete Girder Installation' },
-  { src: '/Construction_projects/Boiler RHS side sheets removed completely.avif', title: 'Industrial Boiler Bay Civil Structuring' },
-  { src: '/Construction_projects/Bunker top (TG Building side) 3 columns dismantled.avif', title: 'TG Building Civil Framework Overhaul' },
-  { src: '/Construction_projects/7 mtr bunker Dismelted safely.avif', title: '7-Meter Bunker High-Elevation Civil Works' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0000-640w.avif', full: '/Construction_projects/IMG-20260207-WA0000.avif', title: 'Reinforced Concrete Framework Casting' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0002-640w.avif', full: '/Construction_projects/IMG-20260207-WA0002.avif', title: 'Heavy Foundation Reinforcement & Steel Tying' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0003-640w.avif', full: '/Construction_projects/IMG-20260207-WA0003.avif', title: 'Deep Ground Excavation & Trench Shoring' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0004-640w.avif', full: '/Construction_projects/IMG-20260207-WA0004.avif', title: 'Structural Column Erection & Alignment' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0006-640w.avif', full: '/Construction_projects/IMG-20260207-WA0006.avif', title: 'Industrial Floor Slab Casting & Laser Screeding' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0007-640w.avif', full: '/Construction_projects/IMG-20260207-WA0007.avif', title: 'Retaining Wall & Earth Stabilization Works' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0008-640w.avif', full: '/Construction_projects/IMG-20260207-WA0008.avif', title: 'Mass Earthwork & Site Grading Operations' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0009-640w.avif', full: '/Construction_projects/IMG-20260207-WA0009.avif', title: 'Substructure Waterproofing & Backfilling' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0010-640w.avif', full: '/Construction_projects/IMG-20260207-WA0010.avif', title: 'Pre-Engineered Building (PEB) Structural Erection' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0011-640w.avif', full: '/Construction_projects/IMG-20260207-WA0011.avif', title: 'Heavy Machinery Site Mobilization' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0012-640w.avif', full: '/Construction_projects/IMG-20260207-WA0012.avif', title: 'High-Strength Concrete Pouring with Boom Placer' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0013-640w.avif', full: '/Construction_projects/IMG-20260207-WA0013.avif', title: 'Underground Drainage & Utility Conduit Network' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0014-640w.avif', full: '/Construction_projects/IMG-20260207-WA0014.avif', title: 'Steel Truss Assembly & Crane Lifts' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0015-640w.avif', full: '/Construction_projects/IMG-20260207-WA0015.avif', title: 'Commercial Multi-Level Framing & Formwork' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0017-640w.avif', full: '/Construction_projects/IMG-20260207-WA0017.avif', title: 'Highway Sub-Base Compaction & Grading' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0018-640w.avif', full: '/Construction_projects/IMG-20260207-WA0018.avif', title: 'Foundational Piling Rig & Soil Stabilization' },
+  { thumb: '/Construction_projects/IMG-20260207-WA0019-640w.avif', full: '/Construction_projects/IMG-20260207-WA0019.avif', title: 'Industrial Plant Foundation Base Pour' },
+  { thumb: '/Construction_projects/Dismentalling work in progress-640w.avif', full: '/Construction_projects/Dismentalling work in progress.avif', title: 'Structural Civil Decommissioning & Modification' },
+  { thumb: '/Construction_projects/Desmelting-640w.avif', full: '/Construction_projects/Desmelting.avif', title: 'Thermal Modification & Heavy Plant Civil Prep' },
+  { thumb: '/Construction_projects/Beam removed-640w.avif', full: '/Construction_projects/Beam removed.avif', title: 'Heavy Pre-Stressed Concrete Girder Installation' },
+  { thumb: '/Construction_projects/Boiler RHS side sheets removed completely-640w.avif', full: '/Construction_projects/Boiler RHS side sheets removed completely.avif', title: 'Industrial Boiler Bay Civil Structuring' },
+  { thumb: '/Construction_projects/Bunker top (TG Building side) 3 columns dismantled-640w.avif', full: '/Construction_projects/Bunker top (TG Building side) 3 columns dismantled.avif', title: 'TG Building Civil Framework Overhaul' },
+  { thumb: '/Construction_projects/7 mtr bunker Dismelted safely-640w.avif', full: '/Construction_projects/7 mtr bunker Dismelted safely.avif', title: '7-Meter Bunker High-Elevation Civil Works' },
 ];
 
 export default function ConstructionServicesPage() {
@@ -192,13 +192,15 @@ export default function ConstructionServicesPage() {
           {constructionImages.map((img, idx) => (
             <div
               key={idx}
-              onClick={() => setLightboxImage(img.src)}
+              onClick={() => setLightboxImage(img.full || img.thumb)}
               className="group relative h-64 bg-stone-900 rounded-3xl overflow-hidden cursor-pointer border border-stone-300/80 hover:border-[#0f8a3c] transition-all shadow-xs hover:shadow-xl transform hover:-translate-y-1"
             >
               <Image
-                src={img.src}
+                src={img.thumb}
                 alt={img.title}
                 fill
+                unoptimized
+                loading="lazy"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -277,6 +279,8 @@ export default function ConstructionServicesPage() {
               src={lightboxImage}
               alt="Enlarged view"
               fill
+              unoptimized
+              priority
               className="object-contain"
             />
           </div>

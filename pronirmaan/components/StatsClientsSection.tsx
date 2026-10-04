@@ -50,6 +50,8 @@ export default function StatsClientsSection() {
                   src={client.src}
                   alt={client.name}
                   fill
+                  unoptimized
+                  loading="lazy"
                   className="object-contain p-1.5"
                   sizes="(max-width: 640px) 176px, 208px"
                 />
@@ -68,6 +70,8 @@ export default function StatsClientsSection() {
                   src={client.src}
                   alt={client.name}
                   fill
+                  unoptimized
+                  loading="lazy"
                   className="object-contain p-1.5"
                   sizes="(max-width: 640px) 176px, 208px"
                 />
