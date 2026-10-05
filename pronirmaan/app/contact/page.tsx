@@ -127,18 +127,18 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f6f4f0] text-stone-900 selection:bg-[#0f8a3c] selection:text-white">
       {/* Standard Header */}
-      
+
 
       {/* Hero Strip */}
       <section className="relative bg-[#131c26] text-white py-14 lg:py-22 border-b border-stone-800 overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#0f8a3c_1px,transparent_1px)] [background-size:24px_24px]" />
-        
+
         {/* Large Architectural Background Typography */}
-        <div 
-          aria-hidden="true" 
+        <div
+          aria-hidden="true"
           className="absolute inset-x-0 bottom-0 pointer-events-none select-none z-0 overflow-hidden flex items-end justify-end px-4 sm:px-8 lg:px-12 leading-none"
         >
-          <span 
+          <span
             className="font-heading font-black text-[12vw] sm:text-[9.5vw] md:text-[8.5vw] lg:text-[7.5vw] xl:text-[155px] 2xl:text-[190px] tracking-tight uppercase whitespace-nowrap"
             style={{
               WebkitTextStroke: '2px rgba(255, 255, 255, 0.18)',
@@ -149,7 +149,7 @@ export default function ContactPage() {
             CONTACT US
           </span>
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-xs font-heading font-medium text-slate-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -162,7 +162,7 @@ export default function ContactPage() {
               <Building className="w-3.5 h-3.5" />
               <span>HEADQUARTERS &amp; ESTIMATION DISPATCH</span>
             </div>
-            
+
             <h1 className="font-heading font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-tight mb-6">
               Get in <span className="text-[#0f8a3c]">Touch</span>
             </h1>
@@ -325,7 +325,7 @@ export default function ContactPage() {
 
               {/* Contact Card - Light Design matching Reference */}
               <div className="bg-white p-8 sm:p-10 rounded-3xl border border-stone-200/90 shadow-sm space-y-7">
-                
+
                 {/* Office Address */}
                 <div className="flex items-start gap-4 sm:gap-5">
                   <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0">
@@ -435,7 +435,7 @@ export default function ContactPage() {
                   Central Headquarters &amp; Project Estimation Desk
                 </h3>
                 <p className="font-body text-xs sm:text-sm text-stone-600 mt-1 max-w-xl">
-                  Drop by our Kurla facility for in-person architectural blueprint reviews, civil BOQ consultations, and technical project planning.
+                  Drop by our Office for in-person architectural blueprint reviews, civil BOQ consultations, and technical project planning.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mt-2.5 text-xs font-mono">
                   <span className="bg-stone-100 text-stone-700 px-2.5 py-1 rounded-lg border border-stone-200 font-medium">
@@ -512,7 +512,7 @@ export default function ContactPage() {
 
 
       {/* Standard Footer */}
-      
+
 
       {/* RFP Quote Modal */}
     </div>
