@@ -87,14 +87,17 @@ export default function CompanyOverview() {
               {/* Outer decorative architectural frame */}
               <div className="relative rounded-3xl overflow-hidden border border-stone-300 shadow-2xl bg-stone-900">
                 <div className="relative h-[380px] sm:h-[440px] w-full">
+                  {/* Skeleton placeholder while loading */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-stone-800 via-stone-700 to-stone-800 animate-pulse pointer-events-none" />
                   <Image
                     src="/Construction_projects/IMG-20260207-WA0004-640w.avif"
                     alt="ProNirmaan Heavy Civil Construction"
                     fill
                     unoptimized
                     loading="lazy"
+                    decoding="async"
                     sizes="(max-width: 1024px) 100vw, 42vw"
-                    className="object-cover"
+                    className="object-cover transition-opacity duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 </div>

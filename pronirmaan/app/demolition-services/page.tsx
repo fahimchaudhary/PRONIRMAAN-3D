@@ -33,10 +33,10 @@ const demolitionImages = [
   { thumb: '/Demolition/Image11-640w.avif', full: '/Demolition/Image11.avif', title: 'Silent Chemical Demolition Grout Injection Site' },
   { thumb: '/Demolition/Image12-640w.avif', full: '/Demolition/Image12.avif', title: 'Controlled Facade Stripping & Safety Netting' },
   { thumb: '/Demolition/Image13-640w.avif', full: '/Demolition/Image13.avif', title: 'Mass Concrete Rubble Crushing & Loading' },
-  { thumb: '/Demolition/Image14.avif', full: '/Demolition/Image14.avif', title: 'Industrial Storage Tank & Vessel Decommissioning' },
-  { thumb: '/Demolition/Image15.avif', full: '/Demolition/Image15.avif', title: 'Interior Strip-Out & Architectural Stripping' },
-  { thumb: '/Demolition/Image16.avif', full: '/Demolition/Image16.avif', title: 'Site Ground Clearing & Final Grade Restoration' },
-  { thumb: '/Demolition/Image17.avif', full: '/Demolition/Image17.avif', title: 'Heavy Reinforced Pedestal Demolition' },
+  { thumb: '/Demolition/Image14-640w.avif', full: '/Demolition/Image14.avif', title: 'Industrial Storage Tank & Vessel Decommissioning' },
+  { thumb: '/Demolition/Image15-640w.avif', full: '/Demolition/Image15.avif', title: 'Interior Strip-Out & Architectural Stripping' },
+  { thumb: '/Demolition/Image16-640w.avif', full: '/Demolition/Image16.avif', title: 'Site Ground Clearing & Final Grade Restoration' },
+  { thumb: '/Demolition/Image17-640w.avif', full: '/Demolition/Image17.avif', title: 'Heavy Reinforced Pedestal Demolition' },
   { thumb: '/Demolition/Image18-640w.avif', full: '/Demolition/Image18.avif', title: 'Zero-Incident Controlled Urban Demolition Completed' },
 ];
 
@@ -191,14 +191,18 @@ export default function DemolitionServicesPage() {
               onClick={() => setLightboxImage(img.full || img.thumb)}
               className="group relative h-64 bg-stone-900 rounded-3xl overflow-hidden cursor-pointer border border-stone-300/80 hover:border-[#0f8a3c] transition-all shadow-xs hover:shadow-xl transform hover:-translate-y-1"
             >
+              {/* Skeleton placeholder while loading */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-stone-800 via-stone-700 to-stone-800 animate-pulse pointer-events-none" />
               <Image
                 src={img.thumb}
                 alt={img.title}
                 fill
                 unoptimized
-                loading="lazy"
+                priority={idx < 4}
+                loading={idx < 4 ? undefined : 'lazy'}
+                decoding="async"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-cover group-hover:scale-105 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 

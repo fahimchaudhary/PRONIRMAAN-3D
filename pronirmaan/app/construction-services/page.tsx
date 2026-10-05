@@ -195,14 +195,18 @@ export default function ConstructionServicesPage() {
               onClick={() => setLightboxImage(img.full || img.thumb)}
               className="group relative h-64 bg-stone-900 rounded-3xl overflow-hidden cursor-pointer border border-stone-300/80 hover:border-[#0f8a3c] transition-all shadow-xs hover:shadow-xl transform hover:-translate-y-1"
             >
+              {/* Skeleton placeholder while loading */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-stone-800 via-stone-700 to-stone-800 animate-pulse pointer-events-none" />
               <Image
                 src={img.thumb}
                 alt={img.title}
                 fill
                 unoptimized
-                loading="lazy"
+                priority={idx < 4}
+                loading={idx < 4 ? undefined : 'lazy'}
+                decoding="async"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-cover group-hover:scale-105 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 

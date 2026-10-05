@@ -146,14 +146,17 @@ export default function ProjectsSection() {
             >
               {/* Image Box */}
               <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-t-3xl">
+                {/* Skeleton placeholder while loading */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-stone-800 via-stone-700 to-stone-800 animate-pulse pointer-events-none" />
                 <Image
                   src={proj.image}
                   alt={proj.title}
                   fill
                   unoptimized
                   loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-3 right-3 bg-[#0f8a3c] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full font-nav shadow-xs">
