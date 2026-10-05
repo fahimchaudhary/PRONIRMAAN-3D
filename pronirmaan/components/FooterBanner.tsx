@@ -123,9 +123,15 @@ export default function FooterBanner({
                 <div className="w-7 h-7 rounded-full border border-[#0f8a3c] flex items-center justify-center text-[#0f8a3c] shrink-0 mt-0.5">
                   <MapPin className="w-3.5 h-3.5" />
                 </div>
-                <span className="leading-snug">
+                <a
+                  href="https://maps.google.com/?q=19.093806,72.883250"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="leading-snug hover:text-white transition-colors"
+                  title="Open location in Google Maps (19°05'37.7&quot;N 72°52'59.7&quot;E)"
+                >
                   Shop No 7, 2 floor, M.k compound, near Maxus Cinema Jarimari, Kurla Andheri road, Mumbai -400072
-                </span>
+                </a>
               </div>
 
               {/* Phone */}

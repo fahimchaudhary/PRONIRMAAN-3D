@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Maximize2,
   X,
+  ExternalLink,
 } from 'lucide-react';
 
 const workTypeOptions = [
@@ -337,6 +338,17 @@ export default function ContactPage() {
                     <p className="font-body text-stone-600 text-sm sm:text-base leading-relaxed mt-0.5">
                       Shop No 7, 2 floor, M.k compound, near Maxus Cinema Jarimari, Kurla Andheri road, Mumbai -400072
                     </p>
+                    <a
+                      href="https://maps.google.com/?q=19.093806,72.883250"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold text-[#0f8a3c] hover:text-[#0c6e30] hover:underline mt-2 transition-colors"
+                      title="Open in Google Maps"
+                    >
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>3VVM+G79 Mumbai &bull; View on Map</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
                   </div>
                 </div>
 
@@ -425,30 +437,73 @@ export default function ContactPage() {
                 <p className="font-body text-xs sm:text-sm text-stone-600 mt-1 max-w-xl">
                   Drop by our Kurla facility for in-person architectural blueprint reviews, civil BOQ consultations, and technical project planning.
                 </p>
+                <div className="flex flex-wrap items-center gap-2 mt-2.5 text-xs font-mono">
+                  <span className="bg-stone-100 text-stone-700 px-2.5 py-1 rounded-lg border border-stone-200 font-medium">
+                    📍 19°05&apos;37.7&quot;N 72°52&apos;59.7&quot;E
+                  </span>
+                  <span className="bg-[#e8f5e9] text-[#0f8a3c] font-semibold px-2.5 py-1 rounded-lg border border-[#c8e6c9]">
+                    Plus Code: 3VVM+G79 Mumbai, Maharashtra
+                  </span>
+                </div>
               </div>
               <a
-                href="https://maps.google.com/?q=19.0937433,72.8833384"
+                href="https://maps.google.com/?q=19.093806,72.883250"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#e8f5e9] hover:bg-[#d4edd8] text-[#0f8a3c] px-4 py-2.5 rounded-xl text-xs font-heading font-bold uppercase tracking-wider transition-colors shadow-2xs shrink-0 self-start sm:self-center"
+                className="inline-flex items-center gap-2 bg-[#0f8a3c] hover:bg-[#0c6e30] text-white px-5 py-3 rounded-xl text-xs font-heading font-bold uppercase tracking-wider transition-all shadow-md shrink-0 self-start sm:self-center hover:scale-[1.02]"
               >
                 <MapPin className="w-4 h-4" />
                 <span>Get Directions on Google Maps</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
-            <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-stone-200 shadow-inner">
+            {/* Clickable Map Card */}
+            <a
+              href="https://maps.google.com/?q=19.093806,72.883250"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-stone-200 shadow-inner cursor-pointer"
+              title="Click map to open 19°05'37.7&quot;N 72°52'59.7&quot;E on Google Maps"
+            >
               <iframe
-                title="ProNirmaan Solutions Office Location"
-                src="https://maps.google.com/maps?q=19.0937433,72.8833384&hl=en&z=15&output=embed"
+                title="ProNirmaan Solutions Office Location - 19°05'37.7N 72°52'59.7E"
+                src="https://maps.google.com/maps?q=19.093806,72.883250&hl=en&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full pointer-events-none"
               />
-            </div>
+
+              {/* Top-Right Floating interactive badge */}
+              <div className="absolute top-4 right-4 z-10 flex items-center gap-2 bg-stone-900/90 backdrop-blur-md text-white text-xs font-heading font-semibold px-3.5 py-2 rounded-xl shadow-lg group-hover:bg-[#0f8a3c] transition-all duration-300">
+                <MapPin className="w-3.5 h-3.5 text-[#25D366] group-hover:text-white transition-colors" />
+                <span>Open in Google Maps</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100" />
+              </div>
+
+              {/* Bottom Info Bar Overlay */}
+              <div className="absolute bottom-0 inset-x-0 z-10 bg-gradient-to-t from-stone-950/95 via-stone-950/60 to-transparent p-4 sm:p-5 pt-12 text-white flex flex-col sm:flex-row sm:items-end justify-between gap-3 group-hover:from-stone-950 transition-all">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
+                    <p className="text-xs sm:text-sm font-mono font-bold tracking-wider text-[#4ade80]">
+                      19°05&apos;37.7&quot;N 72°52&apos;59.7&quot;E &bull; 3VVM+G79 Mumbai
+                    </p>
+                  </div>
+                  <p className="text-xs text-stone-300 mt-1 font-body">
+                    Shop No 7, 2nd floor, M.K. Compound, near Maxus Cinema Jarimari, Kurla Andheri road, Mumbai - 400072
+                  </p>
+                </div>
+                <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-white bg-[#0f8a3c] group-hover:bg-[#15a84b] px-3.5 py-1.5 rounded-lg shadow-sm shrink-0 transition-colors inline-flex items-center gap-1.5 self-start sm:self-auto">
+                  <span>Click to Navigate</span>
+                  <ExternalLink className="w-3 h-3" />
+                </span>
+              </div>
+            </a>
           </div>
 
         </div>
