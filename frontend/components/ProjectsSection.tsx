@@ -142,7 +142,7 @@ export default function ProjectsSection() {
           {filtered.map((proj) => (
             <div
               key={proj.id}
-              className="bg-white border border-stone-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col transform hover:-translate-y-1"
+              className="bg-white hover:bg-[#eaf7ee] border border-stone-200/90 hover:border-[#0f8a3c]/35 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col transform hover:-translate-y-1.5"
             >
               {/* Image Box */}
               <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-t-3xl">
@@ -167,7 +167,7 @@ export default function ProjectsSection() {
               {/* Body */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-heading font-extrabold text-lg text-stone-900 mb-2 group-hover:text-[#0f8a3c] transition-colors">
+                  <h3 className="font-heading font-black text-xl text-stone-900 mb-2 transition-colors">
                     {proj.title}
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs text-stone-500 font-semibold mb-3 font-nav">

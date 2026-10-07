@@ -94,17 +94,17 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
           </div>
         </div>
 
-        {/* 3 Executive Gateway Cards with Modern Curved Borders */}
+        {/* 3 Executive Gateway Cards styled like MSV Freight (Light green card background on hover, dark stable text) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {capabilities.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.id}
-                className="group flex flex-col bg-white border border-stone-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative flex flex-col bg-white hover:bg-[#eaf7ee] border border-stone-200/90 hover:border-[#0f8a3c]/35 p-4 sm:p-5 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate"
               >
-                {/* Image Banner */}
-                <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-t-3xl">
+                {/* Image Banner (Nested inside card with clean rounded frame) */}
+                <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-2xl border-2 border-white shadow-sm mb-5">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -114,45 +114,48 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Top Badge */}
-                  <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 font-nav border border-white/10 rounded-full">
+                  <div className="absolute top-3.5 left-3.5 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 font-nav border border-white/10 rounded-full">
                     {item.tag}
-                  </div>
-
-                  {/* Icon on bottom right */}
-                  <div className="absolute bottom-4 right-4 w-11 h-11 rounded-2xl bg-[#0f8a3c] text-white flex items-center justify-center shadow-lg">
-                    <Icon className="w-5 h-5 stroke-[2]" />
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                <div className="px-2 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-heading font-black text-xl text-stone-900 group-hover:text-[#0f8a3c] transition-colors mb-3 leading-snug">
-                      {item.title}
-                    </h3>
+                    {/* Title + Icon Row (Title stays dark, NOT green; Icon on the right) */}
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <h3 className="font-heading font-black text-xl sm:text-2xl text-stone-900 leading-snug tracking-tight">
+                        {item.title}
+                      </h3>
+                      <div className="w-10 h-10 rounded-xl bg-white border border-stone-200/80 group-hover:border-[#0f8a3c]/30 group-hover:bg-[#0f8a3c] text-stone-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs">
+                        <Icon className="w-5 h-5 stroke-[2]" />
+                      </div>
+                    </div>
                     
-                    <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-5">
+                    <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-4 font-body">
                       {item.description}
                     </p>
 
-                    {/* Bullet Highlights */}
-                    <ul className="space-y-2 mb-6 border-t border-stone-200/80 pt-4">
+                    {/* Highlight Chips / Badges (Styled like MSV Freight's rounded tags) */}
+                    <div className="flex flex-wrap gap-2 mb-6 pt-3 border-t border-stone-200/70 group-hover:border-[#0f8a3c]/20 transition-colors">
                       {item.highlights.map((bullet, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-stone-700">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#0f8a3c] mt-1.5 shrink-0" />
-                          <span>{bullet}</span>
-                        </li>
+                        <span
+                          key={idx}
+                          className="inline-flex items-center text-[11px] font-bold uppercase tracking-wider bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200/80 group-hover:border-[#0f8a3c]/30 shadow-2xs transition-all"
+                        >
+                          {bullet}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
                   {/* Gateway Navigation Link */}
                   <Link
                     href={item.pageUrl}
-                    className="inline-flex items-center justify-between w-full bg-stone-50 hover:bg-[#0f8a3c] text-stone-800 hover:text-white border border-stone-200 hover:border-[#0f8a3c] px-5 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 font-nav shadow-2xs"
+                    className="mt-auto inline-flex items-center justify-between w-full bg-white group-hover:bg-[#0f8a3c] text-stone-800 group-hover:text-white border border-stone-200/90 group-hover:border-[#0f8a3c] px-5 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 font-nav shadow-2xs group-hover:shadow-md cursor-pointer"
                   >
                     <span>{item.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

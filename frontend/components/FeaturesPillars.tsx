@@ -89,8 +89,8 @@ export default function FeaturesPillars() {
                 }
                 className={`group flex flex-col items-center text-center px-8 py-8 sm:py-10 cursor-pointer transition-all duration-300 rounded-2xl border ${
                   isExpanded
-                    ? 'bg-white border-[#0f8a3c] shadow-xl -translate-y-1.5'
-                    : 'bg-white/85 hover:bg-white border-stone-200/90 hover:border-stone-300 shadow-xs hover:shadow-lg hover:-translate-y-1.5'
+                    ? 'bg-[#eaf7ee] border-[#0f8a3c] shadow-xl -translate-y-1.5'
+                    : 'bg-white hover:bg-[#eaf7ee] border-stone-200/90 hover:border-[#0f8a3c]/35 shadow-xs hover:shadow-lg hover:-translate-y-1.5'
                 }`}
               >
                 {/* Clean architectural line icon */}
@@ -98,8 +98,8 @@ export default function FeaturesPillars() {
                   {pillar.icon}
                 </div>
 
-                {/* Title in bold uppercase */}
-                <h3 className="font-heading font-black text-xl sm:text-2xl tracking-wide text-stone-900 group-hover:text-[#0f8a3c] transition-colors">
+                {/* Title in bold uppercase (Stays dark text, not green) */}
+                <h3 className="font-heading font-black text-xl sm:text-2xl tracking-wide text-stone-900 transition-colors">
                   {pillar.title}
                 </h3>
 
