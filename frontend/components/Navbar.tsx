@@ -83,10 +83,10 @@ export default function Navbar({
         </div>
 
         {/* Center Desktop Navigation Links (Direct Multipage Routes) */}
-        <div className="hidden lg:flex items-center gap-7 xl:gap-9 text-[16px] xl:text-[17.5px] font-bold tracking-normal font-heading">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-8 2xl:gap-9 text-[18px] xl:text-[20.5px] font-bold tracking-tight font-heading">
           <Link
             href="/"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'home'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -97,7 +97,7 @@ export default function Navbar({
 
           <Link
             href="/about-us"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'about'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -108,7 +108,7 @@ export default function Navbar({
 
           <Link
             href="/construction-services"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'construction'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -119,7 +119,7 @@ export default function Navbar({
 
           <Link
             href="/demolition-services"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'demolition'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -130,7 +130,7 @@ export default function Navbar({
 
           <Link
             href="/our-team"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'team'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -141,7 +141,7 @@ export default function Navbar({
 
           <Link
             href="/contact"
-            className={`transition-colors py-1 cursor-pointer ${
+            className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'contact'
                 ? 'text-[#0f8a3c] font-black'
                 : 'text-stone-800 hover:text-[#0f8a3c]'
@@ -155,7 +155,7 @@ export default function Navbar({
         <div className="hidden sm:flex items-center">
           <button
             onClick={handleQuoteClick}
-            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3 rounded-full font-extrabold text-[15px] sm:text-base tracking-wide shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95 whitespace-nowrap"
+            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3.5 rounded-full font-extrabold text-[16px] sm:text-[17px] tracking-wide shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95 whitespace-nowrap"
           >
             Get in Touch
           </button>
@@ -245,7 +245,7 @@ export default function Navbar({
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex items-center gap-4 py-3.5 px-6 font-bold text-[15px] transition-colors ${
+                        className={`flex items-center gap-4 py-3.5 px-6 font-bold text-[17px] transition-colors ${
                           isActive
                             ? 'border-l-[3.5px] border-[#0f8a3c] bg-[#f0fbf4] text-[#0f8a3c]'
                             : 'border-l-[3.5px] border-transparent text-[#1e293b] hover:text-[#0f8a3c] hover:bg-stone-50'
