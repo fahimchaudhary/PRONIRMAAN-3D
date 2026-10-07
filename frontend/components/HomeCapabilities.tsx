@@ -94,16 +94,22 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
           </div>
         </div>
 
-        {/* 3 Executive Gateway Cards styled like MSV Freight (Light green card background on hover, dark stable text) */}
+        {/* 3 Executive Gateway Cards styled like MSV Freight (Slide-up light green bg, tilting image, tilting icon & shifting title) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {capabilities.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.id}
-                className="group relative flex flex-col bg-white hover:bg-[#eaf7ee] border border-stone-200/90 hover:border-[#0f8a3c]/35 p-4 sm:p-5 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate"
+                className="group relative flex flex-col bg-white border border-stone-200/90 hover:border-[#0f8a3c]/40 p-4 sm:p-5 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate"
               >
-                {/* Image Banner (Nested inside card with clean rounded frame) */}
+                {/* Bottom-to-Top Sliding Light Green Sheet (Exact match to MSV Freight .svc::before) */}
+                <div
+                  className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {/* Image Banner with MSV Freight style tilt (-2.5deg rotation + scale on hover) */}
                 <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-2xl border-2 border-white shadow-sm mb-5">
                   <Image
                     src={item.image}
@@ -112,7 +118,7 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
                     unoptimized
                     loading="lazy"
                     sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:rotate-[-2.5deg] group-hover:scale-108 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   
@@ -125,21 +131,21 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
                 {/* Content */}
                 <div className="px-2 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Title + Icon Row (Title stays dark, NOT green; Icon on the right) */}
+                    {/* Title + Icon Row (Title shifts right; Icon tilts -10deg & scales on hover) */}
                     <div className="flex items-start justify-between gap-3 mb-3">
-                      <h3 className="font-heading font-black text-xl sm:text-2xl text-stone-900 leading-snug tracking-tight">
+                      <h3 className="font-heading font-black text-xl sm:text-2xl text-stone-900 leading-snug tracking-tight group-hover:translate-x-2 transition-transform duration-300 ease-out">
                         {item.title}
                       </h3>
-                      <div className="w-10 h-10 rounded-xl bg-white border border-stone-200/80 group-hover:border-[#0f8a3c]/30 group-hover:bg-[#0f8a3c] text-stone-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs">
-                        <Icon className="w-5 h-5 stroke-[2]" />
+                      <div className="w-11 h-11 rounded-xl bg-white border border-stone-200/80 group-hover:border-[#0f8a3c]/30 text-stone-700 group-hover:text-[#0f8a3c] flex items-center justify-center shrink-0 transition-all duration-300 shadow-2xs group-hover:rotate-[-10deg] group-hover:scale-115">
+                        <Icon className="w-5 h-5 stroke-[2] transition-transform duration-300" />
                       </div>
                     </div>
                     
-                    <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-4 font-body">
+                    <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-4 font-body group-hover:text-stone-800 transition-colors">
                       {item.description}
                     </p>
 
-                    {/* Highlight Chips / Badges (Styled like MSV Freight's rounded tags) */}
+                    {/* Highlight Chips / Badges */}
                     <div className="flex flex-wrap gap-2 mb-6 pt-3 border-t border-stone-200/70 group-hover:border-[#0f8a3c]/20 transition-colors">
                       {item.highlights.map((bullet, idx) => (
                         <span
@@ -158,7 +164,7 @@ export default function HomeCapabilities({ onOpenQuote }: HomeCapabilitiesProps)
                     className="mt-auto inline-flex items-center justify-between w-full bg-white group-hover:bg-[#0f8a3c] text-stone-800 group-hover:text-white border border-stone-200/90 group-hover:border-[#0f8a3c] px-5 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 font-nav shadow-2xs group-hover:shadow-md cursor-pointer"
                   >
                     <span>{item.ctaText}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
                   </Link>
                 </div>
               </div>

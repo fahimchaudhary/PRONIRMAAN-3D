@@ -142,8 +142,14 @@ export default function ProjectsSection() {
           {filtered.map((proj) => (
             <div
               key={proj.id}
-              className="bg-white hover:bg-[#eaf7ee] border border-stone-200/90 hover:border-[#0f8a3c]/35 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col transform hover:-translate-y-1.5"
+              className="relative bg-white border border-stone-200/90 hover:border-[#0f8a3c]/40 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col transform hover:-translate-y-1.5 isolate"
             >
+              {/* Bottom-to-Top Sliding Light Green Sheet */}
+              <div
+                className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                aria-hidden="true"
+              />
+
               {/* Image Box */}
               <div className="relative h-56 sm:h-64 w-full bg-stone-900 overflow-hidden rounded-t-3xl">
                 {/* Skeleton placeholder while loading */}
@@ -156,7 +162,7 @@ export default function ProjectsSection() {
                   loading="lazy"
                   decoding="async"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-all duration-500"
+                  className="object-cover group-hover:rotate-[-2deg] group-hover:scale-108 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-3 right-3 bg-[#0f8a3c] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full font-nav shadow-xs">
@@ -167,7 +173,7 @@ export default function ProjectsSection() {
               {/* Body */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-heading font-black text-xl text-stone-900 mb-2 transition-colors">
+                  <h3 className="font-heading font-black text-xl text-stone-900 mb-2 group-hover:translate-x-1.5 transition-transform duration-300">
                     {proj.title}
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs text-stone-500 font-semibold mb-3 font-nav">

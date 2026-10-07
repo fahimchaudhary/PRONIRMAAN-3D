@@ -87,19 +87,25 @@ export default function FeaturesPillars() {
                 onClick={() =>
                   setSelectedPillar(isExpanded ? null : pillar.id)
                 }
-                className={`group flex flex-col items-center text-center px-8 py-8 sm:py-10 cursor-pointer transition-all duration-300 rounded-2xl border ${
+                className={`group relative flex flex-col items-center text-center px-8 py-8 sm:py-10 cursor-pointer transition-all duration-300 rounded-2xl border overflow-hidden isolate ${
                   isExpanded
-                    ? 'bg-[#eaf7ee] border-[#0f8a3c] shadow-xl -translate-y-1.5'
-                    : 'bg-white hover:bg-[#eaf7ee] border-stone-200/90 hover:border-[#0f8a3c]/35 shadow-xs hover:shadow-lg hover:-translate-y-1.5'
+                    ? 'bg-[#e4f7ea] border-[#0f8a3c] shadow-xl -translate-y-1.5'
+                    : 'bg-white border-stone-200/90 hover:border-[#0f8a3c]/40 shadow-xs hover:shadow-lg hover:-translate-y-1.5'
                 }`}
               >
-                {/* Clean architectural line icon */}
-                <div className="mb-5 transform group-hover:-translate-y-1 transition-transform duration-200 text-stone-800 group-hover:text-[#0f8a3c]">
+                {/* Bottom-to-Top Sliding Light Green Sheet */}
+                <div
+                  className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {/* Clean architectural line icon (tilts & scales on hover) */}
+                <div className="mb-5 transform group-hover:rotate-[-8deg] group-hover:scale-115 transition-transform duration-300 text-stone-800 group-hover:text-[#0f8a3c]">
                   {pillar.icon}
                 </div>
 
-                {/* Title in bold uppercase (Stays dark text, not green) */}
-                <h3 className="font-heading font-black text-xl sm:text-2xl tracking-wide text-stone-900 transition-colors">
+                {/* Title in bold uppercase (Stays dark text, not green; subtle shift) */}
+                <h3 className="font-heading font-black text-xl sm:text-2xl tracking-wide text-stone-900 group-hover:scale-[1.02] transition-transform duration-300">
                   {pillar.title}
                 </h3>
 
