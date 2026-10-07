@@ -134,8 +134,12 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     function tick() {
       if (isDestroyed) return;
       const diff = targetProgress - currentProgress;
-      if (Math.abs(diff) > 0.0002) {
-        currentProgress += diff * LERP_FACTOR;
+      const absDiff = Math.abs(diff);
+
+      if (absDiff > 0.0001) {
+        // Fast scroll: dynamically increases up to 0.85 so frames keep up with quick finger flicks on mobile
+        const activeLerp = absDiff > 0.08 ? Math.min(0.85, LERP_FACTOR + absDiff * 1.5) : LERP_FACTOR;
+        currentProgress += diff * activeLerp;
         renderCurrent();
         updateActivePhase(currentProgress);
         setProgressPercent(Math.round(currentProgress * 100));
@@ -174,9 +178,9 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       }
     }
 
-    // Preload frames in chunks
+    // Preload frames in chunks (Anchor keyframes every 4th frame loaded first for instant response during fast scrolls)
     function preloadFrames() {
-      const step = Math.ceil(TOTAL_FRAMES / 30);
+      const step = 4;
       const priorityIndices: number[] = [];
       for (let i = 0; i < TOTAL_FRAMES; i += step) priorityIndices.push(i);
       for (let i = 0; i < TOTAL_FRAMES; i++) {
@@ -184,7 +188,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       }
 
       let currentIndex = 0;
-      function loadNextBatch(concurrency = 12) {
+      function loadNextBatch(concurrency = 8) {
         for (let c = 0; c < concurrency && currentIndex < priorityIndices.length; c++) {
           const idx = priorityIndices[currentIndex++];
           const img = new Image();
@@ -201,7 +205,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
           };
         }
       }
-      loadNextBatch(12);
+      loadNextBatch(8);
     }
 
     const onResize = () => {
@@ -225,14 +229,24 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     };
   }, []);
 
+  const jumpToPhase = (phaseIndex: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const viewportH = window.innerHeight || 800;
+    const scrollableDist = container.offsetHeight - viewportH;
+    const targets = [0.06, 0.35, 0.65, 0.92];
+    const targetY = container.offsetTop + scrollableDist * targets[phaseIndex];
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  };
+
   return (
     <section
       id="hero-scroll-container"
       ref={containerRef}
-      className="relative w-full h-[450vh] bg-[#f6f4f0]"
+      className="relative w-full h-[600vh] sm:h-[520vh] md:h-[450vh] bg-[#f6f4f0]"
     >
       {/* Sticky Fullscreen Frame */}
-      <div className="sticky top-0 left-0 w-full h-screen sm:h-screen h-[100dvh] overflow-hidden bg-[#f6f4f0] relative">
+      <div className="sticky top-0 left-0 w-full h-screen h-[100svh] overflow-hidden bg-[#f6f4f0] z-10 will-change-transform">
         {/* Clipped Frame Container (Canvas + Gradient + dynamic bottom chevron cut that activates after hero scroll) */}
         <div
           className={`relative w-full h-full bg-[#0b0f15] transition-[clip-path] duration-500 ease-out ${slantActive ? 'hero-chevron-clip' : 'hero-chevron-flat'
@@ -245,13 +259,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
           />
 
           {/* Soft, natural left vignette gradient for clean typography contrast without dark black shades */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent pointer-events-none" />
         </div>
 
         {/* Cinematic Scrollytelling Typography Overlay */}
         <div className="absolute inset-0 z-20 flex items-center pointer-events-none">
           <div className="max-w-7xl w-full mx-auto px-6 sm:px-12 lg:px-16">
-            <div className="max-w-2xl relative min-h-[300px] flex items-center pointer-events-auto">
+            <div className="max-w-2xl relative min-h-[260px] sm:min-h-[300px] flex items-center pointer-events-auto">
               {/* Phase 1: WE ENGINEER */}
               <div
                 className={`transition-all duration-500 absolute left-0 w-full ${activePhase === 'engineer'
@@ -259,16 +273,16 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                     STRUCTURAL PLANNING
                   </span>
                   <span className="h-[2px] w-12 bg-[#0f8a3c]" />
                 </div>
-                <h1 className="font-heading font-black text-4xl sm:text-6xl lg:text-7xl leading-tight text-white mb-3 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                <h1 className="font-heading font-black text-3xl sm:text-6xl lg:text-7xl leading-tight text-white mb-2 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                   WE <span className="text-[#0f8a3c]">ENGINEER</span>
                 </h1>
-                <p className="text-slate-100 text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+                <p className="text-slate-100 text-xs sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                   Forensic structural analysis, 3D BIM spatial coordination, and pre-demolition site engineering.
                 </p>
               </div>
@@ -280,16 +294,16 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                     CONTROLLED DEMOLITION
                   </span>
                   <span className="h-[2px] w-12 bg-[#0f8a3c]" />
                 </div>
-                <h1 className="font-heading font-black text-4xl sm:text-6xl lg:text-7xl leading-tight text-white mb-3 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                <h1 className="font-heading font-black text-3xl sm:text-6xl lg:text-7xl leading-tight text-white mb-2 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                   WE <span className="text-[#0f8a3c]">DEMOLISH</span>
                 </h1>
-                <p className="text-slate-100 text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+                <p className="text-slate-100 text-xs sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                   Surgical hydraulic clearance, mechanical dismantlement, and zero-incident site remediation.
                 </p>
               </div>
@@ -301,16 +315,16 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                     CIVIL INFRASTRUCTURE
                   </span>
                   <span className="h-[2px] w-12 bg-[#0f8a3c]" />
                 </div>
-                <h1 className="font-heading font-black text-4xl sm:text-6xl lg:text-7xl leading-tight text-white mb-3 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                <h1 className="font-heading font-black text-3xl sm:text-6xl lg:text-7xl leading-tight text-white mb-2 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                   WE <span className="text-[#0f8a3c]">CONSTRUCT</span>
                 </h1>
-                <p className="text-slate-100 text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+                <p className="text-slate-100 text-xs sm:text-base lg:text-lg max-w-lg leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                   High-strength cast-in-place concrete foundations, post-tensioned slabs, and structural steel framing.
                 </p>
               </div>
@@ -322,21 +336,21 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                     TURNKEY ARCHITECTURE
                   </span>
                   <span className="h-[2px] w-12 bg-[#0f8a3c]" />
                 </div>
-                <h1 className="font-heading font-black text-4xl sm:text-6xl lg:text-7xl leading-tight text-white mb-3 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                <h1 className="font-heading font-black text-3xl sm:text-6xl lg:text-7xl leading-tight text-white mb-2 sm:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                   WE <span className="text-[#0f8a3c]">BUILD</span>
                 </h1>
-                <p className="text-slate-100 text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed mb-6 font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+                <p className="text-slate-100 text-xs sm:text-base lg:text-lg max-w-lg leading-relaxed mb-4 sm:mb-6 font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                   Iconic, enduring commercial facilities and civil landmarks engineered for generations.
                 </p>
                 <button
                   onClick={onStartProject}
-                  className="inline-flex items-center gap-3 bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-7 py-3.5 font-bold tracking-widest text-xs uppercase transition-all shadow-xl hover:shadow-2xl cursor-pointer"
+                  className="inline-flex items-center gap-3 bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-6 sm:px-7 py-3 sm:py-3.5 font-bold tracking-widest text-xs uppercase transition-all shadow-xl hover:shadow-2xl cursor-pointer"
                 >
                   <span>START A PROJECT</span>
                   <ChevronRight className="w-4 h-4 stroke-[2.5]" />
@@ -346,24 +360,61 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
           </div>
         </div>
 
+        {/* Interactive Phase Indicator & Scrubber */}
+        <div className="absolute left-4 sm:left-12 bottom-6 sm:bottom-10 z-30 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-lg">
+          {([
+            { id: 'engineer', label: 'PLAN' },
+            { id: 'demolish', label: 'DEMOLISH' },
+            { id: 'construct', label: 'CONSTRUCT' },
+            { id: 'build', label: 'BUILD' },
+          ] as const).map((phase, idx) => (
+            <button
+              key={phase.id}
+              onClick={() => jumpToPhase(idx)}
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                activePhase === phase.id
+                  ? 'w-6 sm:w-8 bg-[#0f8a3c] shadow-[0_0_8px_#0f8a3c]'
+                  : 'w-2 sm:w-2.5 bg-white/40 hover:bg-white/70'
+              }`}
+              title={`Jump to ${phase.label}`}
+              aria-label={`Jump to phase ${idx + 1}: ${phase.label}`}
+            />
+          ))}
+          <span className="ml-1 text-[10px] sm:text-[11px] font-bold text-white/90 font-condensed tracking-widest uppercase">
+            {activePhase.toUpperCase()}
+          </span>
+        </div>
+
+        {/* Mobile / First-time Scroll Cue */}
+        {progressPercent < 6 && (
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-25 pointer-events-none flex flex-col items-center gap-1 animate-bounce opacity-85">
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/90 font-nav drop-shadow-md">
+              Scroll to explore
+            </span>
+            <div className="w-3.5 h-6 rounded-full border border-white/70 flex items-start justify-center p-0.5">
+              <div className="w-1 h-1.5 bg-[#0f8a3c] rounded-full animate-pulse" />
+            </div>
+          </div>
+        )}
+
         {/* Scroll Progress Indicator */}
         <div
           className="
             absolute
-            bottom-24 right-4
-            sm:bottom-[60px] sm:right-[105px]
+            bottom-6 right-4
+            sm:bottom-10 sm:right-12
             z-30
             flex items-center
             bg-black/80
             backdrop-blur-md
-            px-4 py-2
+            px-3.5 py-1.5 sm:px-4 sm:py-2
             rounded-full
             border border-white/15
             shadow-xl
             pointer-events-none
           "
         >
-          <span className="text-[11px] font-bold text-white tracking-widest font-nav whitespace-nowrap">
+          <span className="text-[10px] sm:text-[11px] font-bold text-white tracking-widest font-nav whitespace-nowrap">
             {progressPercent}% SCROLLED
           </span>
         </div>
