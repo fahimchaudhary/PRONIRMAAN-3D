@@ -20,8 +20,8 @@ export default function FeaturesPillars() {
     {
       id: 'trusted-work',
       icon: (
-        <div className="w-12 h-12 flex items-center justify-center text-slate-800">
-          <HardHat className="w-9 h-9 stroke-[1.4]" />
+        <div className="w-16 h-16 flex items-center justify-center text-slate-800">
+          <HardHat className="w-12 h-12 stroke-[1.5]" />
         </div>
       ),
       title: 'TRUSTED WORK',
@@ -38,8 +38,8 @@ export default function FeaturesPillars() {
     {
       id: 'built-to-last',
       icon: (
-        <div className="w-12 h-12 flex items-center justify-center text-slate-800">
-          <ShieldCheck className="w-9 h-9 stroke-[1.4]" />
+        <div className="w-16 h-16 flex items-center justify-center text-slate-800">
+          <ShieldCheck className="w-12 h-12 stroke-[1.5]" />
         </div>
       ),
       title: 'BUILT TO LAST',
@@ -56,8 +56,8 @@ export default function FeaturesPillars() {
     {
       id: 'smart-value',
       icon: (
-        <div className="w-12 h-12 flex items-center justify-center text-slate-800">
-          <Coins className="w-9 h-9 stroke-[1.4]" />
+        <div className="w-16 h-16 flex items-center justify-center text-slate-800">
+          <Coins className="w-12 h-12 stroke-[1.5]" />
         </div>
       ),
       title: 'SMART VALUE',
@@ -74,10 +74,10 @@ export default function FeaturesPillars() {
   ];
 
   return (
-    <section className="relative bg-[#f6f4f0] pt-12 sm:pt-16 pb-14 border-b border-stone-200/60 font-body">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-[#f6f4f0] pt-14 sm:pt-20 pb-16 sm:pb-20 border-b border-stone-200/60 font-body">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 3 Value Pillars with soft curved cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {pillars.map((pillar) => {
             const isExpanded = selectedPillar === pillar.id;
 
@@ -87,25 +87,25 @@ export default function FeaturesPillars() {
                 onClick={() =>
                   setSelectedPillar(isExpanded ? null : pillar.id)
                 }
-                className={`group flex flex-col items-center text-center px-6 py-6 cursor-pointer transition-all duration-300 rounded-2xl border ${
+                className={`group flex flex-col items-center text-center px-8 py-8 sm:py-10 cursor-pointer transition-all duration-300 rounded-2xl border ${
                   isExpanded
-                    ? 'bg-white border-[#0f8a3c] shadow-lg -translate-y-1'
-                    : 'bg-white/70 hover:bg-white border-stone-200/90 hover:border-stone-300 shadow-2xs hover:shadow-md hover:-translate-y-1'
+                    ? 'bg-white border-[#0f8a3c] shadow-xl -translate-y-1.5'
+                    : 'bg-white/85 hover:bg-white border-stone-200/90 hover:border-stone-300 shadow-xs hover:shadow-lg hover:-translate-y-1.5'
                 }`}
               >
                 {/* Clean architectural line icon */}
-                <div className="mb-4 transform group-hover:-translate-y-1 transition-transform duration-200 text-stone-800 group-hover:text-[#0f8a3c]">
+                <div className="mb-5 transform group-hover:-translate-y-1 transition-transform duration-200 text-stone-800 group-hover:text-[#0f8a3c]">
                   {pillar.icon}
                 </div>
 
                 {/* Title in bold uppercase */}
-                <h3 className="font-heading font-extrabold text-base sm:text-lg tracking-wider text-stone-900 group-hover:text-[#0f8a3c] transition-colors">
+                <h3 className="font-heading font-black text-xl sm:text-2xl tracking-wide text-stone-900 group-hover:text-[#0f8a3c] transition-colors">
                   {pillar.title}
                 </h3>
 
                 {/* Subtle indicator hint */}
-                <span className="mt-2 text-[11px] font-medium text-stone-500 uppercase tracking-widest flex items-center gap-1 opacity-70 group-hover:opacity-100 transition-opacity">
-                  <Info className="w-3 h-3 text-[#0f8a3c]" /> View Standards
+                <span className="mt-3 text-xs sm:text-sm font-semibold text-stone-500 uppercase tracking-widest flex items-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                  <Info className="w-3.5 h-3.5 text-[#0f8a3c]" /> View Standards
                 </span>
               </div>
             );

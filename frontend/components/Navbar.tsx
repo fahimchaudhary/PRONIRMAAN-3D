@@ -52,38 +52,38 @@ export default function Navbar({
             href="/"
             className="flex items-center cursor-pointer transition-transform hover:scale-[1.01]"
           >
-            <div className="relative h-12 sm:h-14 w-44 sm:w-56 shrink-0 flex items-center" style={{ maxWidth: '224px', maxHeight: '56px' }}>
+            <div className="relative h-14 sm:h-16 lg:h-18 w-56 sm:w-72 lg:w-80 shrink-0 flex items-center" style={{ maxWidth: '340px', maxHeight: '74px' }}>
               <Image
                 src="/logo.png"
                 alt="ProNirmaan Solutions"
-                width={224}
-                height={56}
+                width={340}
+                height={74}
                 priority
                 unoptimized
-                className="h-12 sm:h-14 w-auto object-contain object-left max-w-full"
+                className="h-14 sm:h-16 lg:h-18 w-auto object-contain object-left max-w-full"
               />
             </div>
           </Link>
 
           {/* Thin Vertical Separator */}
-          <div className="h-9 sm:h-11 w-[1.5px] bg-stone-300/80 shrink-0 mx-0.5 sm:mx-1" />
+          <div className="h-10 sm:h-12 lg:h-14 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-2" />
 
           {/* ISO Verified Badge */}
-          <div className="relative h-10 sm:h-12 w-12 sm:w-16 shrink-0 flex items-center" style={{ maxWidth: '64px', maxHeight: '48px' }}>
+          <div className="relative h-12 sm:h-14 lg:h-16 w-14 sm:w-16 lg:w-20 shrink-0 flex items-center" style={{ maxWidth: '80px', maxHeight: '64px' }}>
             <Image
               src="/iso/iso-.avif"
               alt="ISO Verified"
-              width={64}
-              height={48}
+              width={80}
+              height={64}
               priority
               unoptimized
-              className="h-10 sm:h-12 w-auto object-contain max-w-full"
+              className="h-12 sm:h-14 lg:h-16 w-auto object-contain max-w-full"
             />
           </div>
         </div>
 
         {/* Center Desktop Navigation Links (Direct Multipage Routes) */}
-        <div className="hidden lg:flex items-center gap-7 xl:gap-9 text-[14px] font-bold tracking-normal font-heading">
+        <div className="hidden lg:flex items-center gap-7 xl:gap-9 text-[16px] xl:text-[17.5px] font-bold tracking-normal font-heading">
           <Link
             href="/"
             className={`transition-colors py-1 cursor-pointer ${
@@ -155,7 +155,7 @@ export default function Navbar({
         <div className="hidden sm:flex items-center">
           <button
             onClick={handleQuoteClick}
-            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-7 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer active:scale-95"
+            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3 rounded-full font-extrabold text-[15px] sm:text-base tracking-wide shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95 whitespace-nowrap"
           >
             Get in Touch
           </button>
