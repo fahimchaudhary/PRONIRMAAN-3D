@@ -39,9 +39,25 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     const handleOpenSearch = () => setSearchOpen(true);
     window.addEventListener('openQuoteModal', handleOpenQuote);
     window.addEventListener('openSearchModal', handleOpenSearch);
+
+    // Scale-to-fit resize listener matching MSV Freight architecture
+    const DESIGN_W = 1280;
+    const applyScale = () => {
+      const root = document.documentElement;
+      const w = root.clientWidth || window.innerWidth;
+      if (window.matchMedia('(min-width: 761px)').matches) {
+        root.style.setProperty('--fs', (w / DESIGN_W).toFixed(4));
+      } else {
+        root.style.setProperty('--fs', '1');
+      }
+    };
+    applyScale();
+    window.addEventListener('resize', applyScale, { passive: true });
+
     return () => {
       window.removeEventListener('openQuoteModal', handleOpenQuote);
       window.removeEventListener('openSearchModal', handleOpenSearch);
+      window.removeEventListener('resize', applyScale);
     };
   }, []);
 

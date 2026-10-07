@@ -24,6 +24,28 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function () {
+  var DESIGN_W = 1280;
+  var root = document.documentElement;
+  function viewportW() {
+    return root.clientWidth || window.innerWidth;
+  }
+  function applyScale() {
+    if (window.matchMedia("(min-width: 761px)").matches) {
+      root.style.setProperty("--fs", (viewportW() / DESIGN_W).toFixed(4));
+    } else {
+      root.style.setProperty("--fs", "1");
+    }
+  }
+  applyScale();
+  window.addEventListener("resize", applyScale, { passive: true });
+})();
+`,
+          }}
+        />
       </head>
       <body suppressHydrationWarning className="font-body selection:bg-[#0f8a3c] selection:text-white">
         <SEO path="/" />

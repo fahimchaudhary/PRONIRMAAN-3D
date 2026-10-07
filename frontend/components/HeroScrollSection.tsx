@@ -50,14 +50,15 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
 
     function resizeCanvas() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const container = canvas?.parentElement || canvas;
+      width = container?.clientWidth || window.innerWidth;
+      height = container?.clientHeight || window.innerHeight;
 
       if (!canvas) return;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
 
       ctx.scale(dpr, dpr);
       ctx.imageSmoothingEnabled = true;
