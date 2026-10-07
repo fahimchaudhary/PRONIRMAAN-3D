@@ -46,6 +46,26 @@
   --brand-cream: #f6f4f0;
 }
 
+/* Fluid Desktop Scaling: renders at 135%-140% visual scale by default on desktops,
+   while capping smoothly without drastic shifts when zooming */
+@media (min-width: 1024px) {
+  :root {
+    font-size: clamp(17px, 1.05vw + 3.5px, 20.5px);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    font-size: clamp(18.5px, 1.12vw + 2.5px, 22px);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    font-size: clamp(20px, 1.15vw + 2px, 23px);
+  }
+}
+
 html {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
