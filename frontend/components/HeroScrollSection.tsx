@@ -373,7 +373,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
               onClick={() => jumpToPhase(idx)}
               className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                 activePhase === phase.id
-                  ? 'w-6 sm:w-8 bg-[#0f8a3c] shadow-[0_0_8px_#0f8a3c]'
+                  ? 'w-6 sm:w-8 bg-[#0f8a3c]'
                   : 'w-2 sm:w-2.5 bg-white/40 hover:bg-white/70'
               }`}
               title={`Jump to ${phase.label}`}
