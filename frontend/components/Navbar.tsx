@@ -52,14 +52,15 @@ export default function Navbar({
             href="/"
             className="flex items-center cursor-pointer transition-transform hover:scale-[1.01]"
           >
-            <div className="relative h-12 sm:h-14 w-44 sm:w-56 shrink-0">
+            <div className="relative h-12 sm:h-14 w-44 sm:w-56 shrink-0 flex items-center" style={{ maxWidth: '224px', maxHeight: '56px' }}>
               <Image
                 src="/logo.png"
                 alt="ProNirmaan Solutions"
-                fill
+                width={224}
+                height={56}
                 priority
                 unoptimized
-                className="object-contain object-left"
+                className="h-12 sm:h-14 w-auto object-contain object-left max-w-full"
               />
             </div>
           </Link>
@@ -68,14 +69,15 @@ export default function Navbar({
           <div className="h-9 sm:h-11 w-[1.5px] bg-stone-300/80 shrink-0 mx-0.5 sm:mx-1" />
 
           {/* ISO Verified Badge */}
-          <div className="relative h-10 sm:h-12 w-12 sm:w-16 shrink-0">
+          <div className="relative h-10 sm:h-12 w-12 sm:w-16 shrink-0 flex items-center" style={{ maxWidth: '64px', maxHeight: '48px' }}>
             <Image
               src="/iso/iso-.avif"
               alt="ISO Verified"
-              fill
+              width={64}
+              height={48}
               priority
               unoptimized
-              className="object-contain"
+              className="h-10 sm:h-12 w-auto object-contain max-w-full"
             />
           </div>
         </div>
@@ -275,14 +277,15 @@ export default function Navbar({
               </button>
               
               <div className="mt-4 flex items-center justify-center gap-2">
-                <div className="relative w-5 h-5 shrink-0">
+                <div className="relative w-5 h-5 shrink-0 flex items-center" style={{ maxWidth: '20px', maxHeight: '20px' }}>
                   <Image
                     src="/iso/iso-.avif"
                     alt="ISO Verified"
-                    fill
+                    width={20}
+                    height={20}
                     unoptimized
                     loading="lazy"
-                    className="object-contain"
+                    className="w-5 h-5 object-contain"
                   />
                 </div>
                 <span className="text-[10.5px] font-bold uppercase tracking-widest text-stone-500 font-nav">

@@ -121,14 +121,15 @@ export default function CompanyOverview() {
 
               {/* Floating Verified Badge */}
               <div className="absolute -top-4 -right-4 bg-white border border-stone-200 px-5 py-3.5 shadow-xl rounded-2xl hidden sm:flex items-center gap-3">
-                <div className="relative h-9 w-12 shrink-0">
+                <div className="relative h-9 w-12 shrink-0 flex items-center" style={{ maxWidth: '48px', maxHeight: '36px' }}>
                   <Image
                     src="/iso/iso-.avif"
                     alt="ISO Certified"
-                    fill
+                    width={48}
+                    height={36}
                     unoptimized
                     loading="lazy"
-                    className="object-contain"
+                    className="h-9 w-auto object-contain max-w-full"
                   />
                 </div>
                 <div>

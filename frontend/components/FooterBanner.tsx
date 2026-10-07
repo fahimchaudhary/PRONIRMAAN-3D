@@ -33,27 +33,29 @@ export default function FooterBanner({
           <div className="lg:col-span-4">
             {/* White/Inverted Brand Area: Logo + Vertical Line + ISO Badge */}
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative h-10 w-44">
+              <div className="relative h-10 w-44 shrink-0 flex items-center" style={{ maxWidth: '176px', maxHeight: '40px' }}>
                 <Image
                   src="/logo.png"
                   alt="Pronirmaan Solutions"
-                  fill
+                  width={176}
+                  height={40}
                   unoptimized
                   loading="lazy"
-                  className="object-contain object-left brightness-0 invert"
+                  className="h-10 w-auto object-contain object-left brightness-0 invert max-w-full"
                 />
               </div>
 
               <div className="h-7 w-[1.5px] bg-slate-700 shrink-0" />
 
-              <div className="relative h-9 w-14 shrink-0">
+              <div className="relative h-9 w-14 shrink-0 flex items-center" style={{ maxWidth: '56px', maxHeight: '36px' }}>
                 <Image
                   src="/iso/iso-.avif"
                   alt="ISO Verified"
-                  fill
+                  width={56}
+                  height={36}
                   unoptimized
                   loading="lazy"
-                  className="object-contain brightness-0 invert opacity-90"
+                  className="h-9 w-auto object-contain brightness-0 invert opacity-90 max-w-full"
                 />
               </div>
             </div>
