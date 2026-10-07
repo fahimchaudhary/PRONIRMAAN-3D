@@ -115,14 +115,19 @@ export default function ConstructionServicesPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-7 sm:p-8 border border-stone-200/90 rounded-3xl shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative">
-            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4">
+          <div className="group relative bg-white p-7 sm:p-8 border border-stone-200/90 hover:border-[#0f8a3c]/40 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate">
+            {/* Bottom-to-Top Sliding Light Green Sheet */}
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300">
               <Layers className="w-5 h-5" />
             </div>
-            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2">
+            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2 group-hover:translate-x-1.5 transition-transform duration-300">
               Deep Foundation &amp; Shoring
             </h3>
-            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4">
+            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4 group-hover:text-stone-800 transition-colors">
               Bored cast-in-situ piles, driven piles, raft foundations, and contiguous pile retaining walls engineered for challenging soil strata.
             </p>
             <ul className="space-y-1.5 text-[11px] text-stone-700 font-body">
@@ -132,14 +137,19 @@ export default function ConstructionServicesPage() {
             </ul>
           </div>
 
-          <div className="bg-white p-7 sm:p-8 border border-stone-200/90 rounded-3xl shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative">
-            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4">
+          <div className="group relative bg-white p-7 sm:p-8 border border-stone-200/90 hover:border-[#0f8a3c]/40 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate">
+            {/* Bottom-to-Top Sliding Light Green Sheet */}
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300">
               <Building className="w-5 h-5" />
             </div>
-            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2">
+            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2 group-hover:translate-x-1.5 transition-transform duration-300">
               RCC Structural Superstructures
             </h3>
-            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4">
+            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4 group-hover:text-stone-800 transition-colors">
               Monolithic reinforced concrete frames, shear walls, heavy columns, and post-tensioned beam systems for commercial &amp; industrial complexes.
             </p>
             <ul className="space-y-1.5 text-[11px] text-stone-700 font-body">
@@ -149,14 +159,19 @@ export default function ConstructionServicesPage() {
             </ul>
           </div>
 
-          <div className="bg-white p-7 sm:p-8 border border-stone-200/90 rounded-3xl shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative">
-            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4">
+          <div className="group relative bg-white p-7 sm:p-8 border border-stone-200/90 hover:border-[#0f8a3c]/40 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 isolate">
+            {/* Bottom-to-Top Sliding Light Green Sheet */}
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <div className="w-11 h-11 bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center rounded-2xl mb-4 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300">
               <Truck className="w-5 h-5" />
             </div>
-            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2">
+            <h3 className="font-heading font-bold text-lg uppercase text-stone-900 mb-2 group-hover:translate-x-1.5 transition-transform duration-300">
               Heavy Industrial Flooring &amp; Pavements
             </h3>
-            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4">
+            <p className="text-xs text-stone-600 leading-relaxed font-body mb-4 group-hover:text-stone-800 transition-colors">
               Jointless laser-screeded concrete floors, FM2/DM2 flatness tolerances, metallic surface hardeners, and heavy logistics yard paving.
             </p>
             <ul className="space-y-1.5 text-[11px] text-stone-700 font-body">
@@ -206,7 +221,7 @@ export default function ConstructionServicesPage() {
                 loading={idx < 4 ? undefined : 'lazy'}
                 decoding="async"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-all duration-500"
+                className="object-cover group-hover:rotate-[-2.5deg] group-hover:scale-108 transition-all duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
@@ -231,37 +246,49 @@ export default function ConstructionServicesPage() {
       {/* Quality & Safety Assurance */}
       <section className="bg-stone-200/60 py-12 border-t border-stone-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          <div className="flex items-start gap-4 bg-white/70 p-5 rounded-2xl border border-stone-300/80 shadow-2xs">
-            <ShieldCheck className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1" />
+          <div className="group relative flex items-start gap-4 bg-white p-6 rounded-2xl border border-stone-300/80 hover:border-[#0f8a3c]/40 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 isolate">
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <ShieldCheck className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300" />
             <div>
-              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1">
+              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1 group-hover:translate-x-1 transition-transform duration-300">
                 ISO 9001:2015 QA/QC Testing
               </h4>
-              <p className="text-xs text-stone-600 font-body leading-relaxed">
+              <p className="text-xs text-stone-600 font-body leading-relaxed group-hover:text-stone-800 transition-colors">
                 Mandatory slump cone, cube compression test reports (7 &amp; 28 days), rebar tensile certification, and batch mix plant calibration records.
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4 bg-white/70 p-5 rounded-2xl border border-stone-300/80 shadow-2xs">
-            <HardHat className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1" />
+          <div className="group relative flex items-start gap-4 bg-white p-6 rounded-2xl border border-stone-300/80 hover:border-[#0f8a3c]/40 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 isolate">
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <HardHat className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300" />
             <div>
-              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1">
+              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1 group-hover:translate-x-1 transition-transform duration-300">
                 Zero-Incident Site Safety (ISO 45001)
               </h4>
-              <p className="text-xs text-stone-600 font-body leading-relaxed">
+              <p className="text-xs text-stone-600 font-body leading-relaxed group-hover:text-stone-800 transition-colors">
                 Full PPE compliance, certified scaffolding inspectors, daily tool-box talks, and hazard identification protocol on every active project.
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4 bg-white/70 p-5 rounded-2xl border border-stone-300/80 shadow-2xs">
-            <FileCheck2 className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1" />
+          <div className="group relative flex items-start gap-4 bg-white p-6 rounded-2xl border border-stone-300/80 hover:border-[#0f8a3c]/40 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 isolate">
+            <div
+              className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+              aria-hidden="true"
+            />
+            <FileCheck2 className="w-8 h-8 text-[#0f8a3c] shrink-0 mt-1 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300" />
             <div>
-              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1">
+              <h4 className="font-heading font-bold text-sm uppercase text-stone-900 mb-1 group-hover:translate-x-1 transition-transform duration-300">
                 Dedicated Machinery Fleet
               </h4>
-              <p className="text-xs text-stone-600 font-body leading-relaxed">
+              <p className="text-xs text-stone-600 font-body leading-relaxed group-hover:text-stone-800 transition-colors">
                 Company-owned 20-ton Tata Hitachi EX210 excavators, mobile concrete batching, transit mixers, and vibration rollers for zero mobilization delay.
               </p>
             </div>

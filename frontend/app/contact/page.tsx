@@ -327,12 +327,12 @@ export default function ContactPage() {
               <div className="bg-white p-8 sm:p-10 rounded-3xl border border-stone-200/90 shadow-sm space-y-7">
 
                 {/* Office Address */}
-                <div className="flex items-start gap-4 sm:gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0">
+                <div className="group p-3 sm:p-4 -mx-3 sm:-mx-4 rounded-2xl hover:bg-[#e4f7ea]/70 transition-colors duration-300 flex items-start gap-4 sm:gap-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                     <MapPin className="w-6 h-6 stroke-[1.75]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg">
+                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg transition-transform duration-300 group-hover:translate-x-1">
                       Office Address
                     </h3>
                     <p className="font-body text-stone-600 text-sm sm:text-base leading-relaxed mt-0.5">
@@ -353,12 +353,12 @@ export default function ContactPage() {
                 </div>
 
                 {/* Direct Contact */}
-                <div className="flex items-start gap-4 sm:gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0">
+                <div className="group p-3 sm:p-4 -mx-3 sm:-mx-4 rounded-2xl hover:bg-[#e4f7ea]/70 transition-colors duration-300 flex items-start gap-4 sm:gap-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                     <Phone className="w-6 h-6 stroke-[1.75]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg">
+                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg transition-transform duration-300 group-hover:translate-x-1">
                       Direct Contact
                     </h3>
                     <p className="font-body text-stone-600 text-sm sm:text-base leading-relaxed mt-0.5">
@@ -374,12 +374,12 @@ export default function ContactPage() {
                 </div>
 
                 {/* Email Inquiry */}
-                <div className="flex items-start gap-4 sm:gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0">
+                <div className="group p-3 sm:p-4 -mx-3 sm:-mx-4 rounded-2xl hover:bg-[#e4f7ea]/70 transition-colors duration-300 flex items-start gap-4 sm:gap-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                     <Mail className="w-6 h-6 stroke-[1.75]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg">
+                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg transition-transform duration-300 group-hover:translate-x-1">
                       Email Inquiry
                     </h3>
                     <p className="font-body text-stone-600 text-sm sm:text-base leading-relaxed mt-0.5">
@@ -391,12 +391,12 @@ export default function ContactPage() {
                 </div>
 
                 {/* Working Hours */}
-                <div className="flex items-start gap-4 sm:gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0">
+                <div className="group p-3 sm:p-4 -mx-3 sm:-mx-4 rounded-2xl hover:bg-[#e4f7ea]/70 transition-colors duration-300 flex items-start gap-4 sm:gap-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e8f5e9] text-[#0f8a3c] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                     <Clock className="w-6 h-6 stroke-[1.75]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg">
+                    <h3 className="font-heading font-bold text-stone-900 text-base sm:text-lg transition-transform duration-300 group-hover:translate-x-1">
                       Working Hours
                     </h3>
                     <p className="font-body text-stone-600 text-sm sm:text-base leading-relaxed mt-0.5">

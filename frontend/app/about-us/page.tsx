@@ -308,14 +308,19 @@ export default function AboutUsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {leadership.map((leader, i) => (
-                <div key={i} className="bg-[#f6f4f0] border border-stone-200/90 p-6 sm:p-8 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <div key={i} className="group relative overflow-hidden isolate bg-[#f6f4f0] border border-stone-200/90 p-6 sm:p-8 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                  {/* Soft light green sliding sheet from bottom on hover */}
+                  <div 
+                    className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" 
+                    aria-hidden="true" 
+                  />
                   <div>
                     {/* Executive Icon matching screenshot */}
-                    <div className="w-13 h-13 rounded-2xl bg-[#eaf6ed] border border-[#cbeed8] flex items-center justify-center mb-5 text-[#0f8a3c] group-hover:scale-105 transition-transform shadow-2xs">
+                    <div className="w-13 h-13 rounded-2xl bg-[#eaf6ed] border border-[#cbeed8] flex items-center justify-center mb-5 text-[#0f8a3c] group-hover:scale-110 group-hover:rotate-[-8deg] transition-transform duration-300 shadow-2xs">
                       <Users className="w-6 h-6 stroke-[2.2]" />
                     </div>
 
-                    <h3 className="font-heading font-black text-xl text-stone-900 tracking-tight leading-snug">
+                    <h3 className="font-heading font-black text-xl text-stone-900 tracking-tight leading-snug transition-transform duration-300 group-hover:translate-x-1.5">
                       {leader.name}
                     </h3>
 
@@ -349,11 +354,16 @@ export default function AboutUsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {processSteps.map((step, idx) => (
-              <div key={idx} className="bg-white border border-stone-200/90 p-6 rounded-2xl relative group hover:border-[#0f8a3c] shadow-2xs hover:shadow-md transition-all">
-                <div className="font-heading font-black text-3xl text-stone-300 group-hover:text-[#0f8a3c] transition-colors mb-4">
+              <div key={idx} className="group relative overflow-hidden isolate bg-white border border-stone-200/90 p-6 rounded-2xl hover:border-[#0f8a3c] shadow-2xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                {/* Soft light green sliding sheet from bottom on hover */}
+                <div 
+                  className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" 
+                  aria-hidden="true" 
+                />
+                <div className="font-heading font-black text-3xl text-stone-300 group-hover:text-[#0f8a3c] group-hover:scale-110 transition-all duration-300 origin-left mb-4">
                   {step.step}
                 </div>
-                <h4 className="font-heading font-bold text-sm text-stone-900 uppercase tracking-tight mb-2">
+                <h4 className="font-heading font-bold text-sm text-stone-900 uppercase tracking-tight mb-2 transition-transform duration-300 group-hover:translate-x-1">
                   {step.title}
                 </h4>
                 <p className="font-body text-xs text-stone-600 leading-relaxed">
@@ -380,12 +390,17 @@ export default function AboutUsPage() {
               {strengths.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={idx} className="p-6 bg-[#f6f4f0] border border-stone-200/90 rounded-2xl flex gap-4 shadow-2xs hover:shadow-md transition-all">
-                    <div className="w-10 h-10 rounded-xl bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center shrink-0">
+                  <div key={idx} className="group relative overflow-hidden isolate p-6 bg-[#f6f4f0] border border-stone-200/90 rounded-2xl flex gap-4 shadow-2xs hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                    {/* Soft light green sliding sheet from bottom on hover */}
+                    <div 
+                      className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" 
+                      aria-hidden="true" 
+                    />
+                    <div className="w-10 h-10 rounded-xl bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-heading font-bold text-sm text-stone-900 uppercase tracking-tight mb-1">
+                      <h4 className="font-heading font-bold text-sm text-stone-900 uppercase tracking-tight mb-1 transition-transform duration-300 group-hover:translate-x-1">
                         {item.title}
                       </h4>
                       <p className="font-body text-xs text-stone-600 leading-relaxed">
@@ -439,7 +454,7 @@ export default function AboutUsPage() {
                       fill
                       unoptimized
                       loading="lazy"
-                      className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
+                      className="object-contain p-1.5 group-hover:scale-108 group-hover:rotate-[-2deg] transition-transform duration-500 ease-out"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-center">
@@ -470,7 +485,7 @@ export default function AboutUsPage() {
                       fill
                       unoptimized
                       loading="lazy"
-                      className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
+                      className="object-contain p-1.5 group-hover:scale-108 group-hover:rotate-[-2deg] transition-transform duration-500 ease-out"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-center">

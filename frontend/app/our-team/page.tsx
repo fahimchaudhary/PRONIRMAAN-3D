@@ -188,8 +188,14 @@ export default function OurTeamPage() {
             {teamCrews.map((crew, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-stone-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col transform hover:-translate-y-1"
+                className="group relative overflow-hidden isolate bg-white border border-stone-200/90 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-1"
               >
+                {/* Soft light green sliding sheet from bottom on hover */}
+                <div 
+                  className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" 
+                  aria-hidden="true" 
+                />
+
                 {/* Photo Area */}
                 <div
                   className="relative h-64 w-full bg-stone-900 cursor-pointer overflow-hidden rounded-t-3xl"
@@ -202,7 +208,7 @@ export default function OurTeamPage() {
                     unoptimized
                     loading="lazy"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-108 group-hover:rotate-[-2deg] transition-transform duration-500 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-3">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/70 text-white text-[11px] font-heading font-bold uppercase rounded-full">
@@ -217,7 +223,7 @@ export default function OurTeamPage() {
                     <span className="font-heading font-bold text-[11px] text-[#0f8a3c] uppercase tracking-wider block mb-1">
                       {crew.subtitle}
                     </span>
-                    <h3 className="font-heading font-bold text-lg text-stone-900 mb-2">
+                    <h3 className="font-heading font-bold text-lg text-stone-900 mb-2 transition-transform duration-300 group-hover:translate-x-1.5">
                       {crew.title}
                     </h3>
                     <p className="font-body text-xs sm:text-sm text-stone-600 leading-relaxed">
@@ -246,12 +252,17 @@ export default function OurTeamPage() {
               {values.map((v, i) => {
                 const Icon = v.icon;
                 return (
-                  <div key={i} className="p-6 sm:p-7 bg-[#f6f4f0] border border-stone-200/90 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-md transition-all hover:-translate-y-1">
+                  <div key={i} className="group relative overflow-hidden isolate p-6 sm:p-7 bg-[#f6f4f0] border border-stone-200/90 rounded-3xl flex flex-col justify-between shadow-2xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    {/* Soft light green sliding sheet from bottom on hover */}
+                    <div 
+                      className="absolute inset-0 bg-[#e4f7ea] -z-10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" 
+                      aria-hidden="true" 
+                    />
                     <div>
-                      <div className="w-12 h-12 rounded-2xl bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-[#0f8a3c]/10 text-[#0f8a3c] flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <h4 className="font-heading font-bold text-base text-stone-900 uppercase tracking-tight mb-2">
+                      <h4 className="font-heading font-bold text-base text-stone-900 uppercase tracking-tight mb-2 transition-transform duration-300 group-hover:translate-x-1">
                         {v.title}
                       </h4>
                       <p className="font-body text-xs sm:text-sm text-stone-600 leading-relaxed">
