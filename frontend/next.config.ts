@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   transpilePackages: ['motion'],
+  async rewrites() {
+    return [
+      {
+        source: '/mnt/data/frames_30fps_jpg_new/:path*',
+        destination: '/frames_30fps_jpg_new/:path*',
+      },
+    ];
+  },
   async headers() {
     return [
       {

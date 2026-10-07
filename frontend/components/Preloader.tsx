@@ -28,7 +28,7 @@ export default function Preloader({ duration = 2400 }: PreloaderProps) {
     // Preload hero frame 1 and logo in the background
     try {
       const img1 = new Image();
-      img1.src = '/mnt/data/frames_30fps_jpg_new/frame_0001.jpg';
+      img1.src = '/frames_30fps_jpg_new/frame_0001.jpg';
       const logoImg = new Image();
       logoImg.src = '/logo.png';
     } catch (_) {}

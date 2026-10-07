@@ -45,7 +45,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
 
     function getFrameUrl(index: number) {
       const frameNum = String(index + 1).padStart(4, '0');
-      return `/mnt/data/frames_30fps_jpg_new/frame_${frameNum}.jpg`;
+      return `/frames_30fps_jpg_new/frame_${frameNum}.jpg`;
     }
 
     function resizeCanvas() {
