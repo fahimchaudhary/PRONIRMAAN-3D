@@ -45,51 +45,51 @@ export default function Navbar({
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-xs border-b border-stone-200/90 font-nav select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-18 sm:h-22 lg:h-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18 lg:h-20">
         {/* Brand Area: Logo + Vertical Line + ISO Badge */}
-        <div className="flex items-center gap-2 sm:gap-4 shrink-0 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-3.5 shrink-0 min-w-0">
           <Link
             href="/"
             className="flex items-center cursor-pointer transition-transform hover:scale-[1.01]"
           >
-            <div className="relative h-11 sm:h-14 lg:h-18 w-44 sm:w-64 lg:w-80 shrink-0 flex items-center" style={{ maxWidth: '340px', maxHeight: '74px' }}>
+            <div className="relative h-10 sm:h-11 lg:h-12 w-40 sm:w-48 lg:w-56 shrink-0 flex items-center">
               <Image
                 src="/logo.png"
                 alt="ProNirmaan Solutions"
-                width={340}
-                height={74}
+                width={260}
+                height={52}
                 priority
                 unoptimized
-                className="h-11 sm:h-14 lg:h-18 w-auto object-contain object-left max-w-full"
+                className="h-10 sm:h-11 lg:h-12 w-auto object-contain object-left max-w-full"
               />
             </div>
           </Link>
 
           {/* Thin Vertical Separator - Shown on sm+ screens */}
-          <div className="hidden sm:block h-8 sm:h-12 lg:h-14 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-2" />
+          <div className="hidden sm:block h-6 sm:h-7 lg:h-8 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-1.5" />
 
           {/* ISO Verified Badge - Shown on sm+ screens (on phone it's in the mobile drawer) */}
-          <div className="hidden sm:flex relative h-10 sm:h-14 lg:h-16 w-12 sm:w-16 lg:w-20 shrink-0 items-center" style={{ maxWidth: '80px', maxHeight: '64px' }}>
+          <div className="hidden sm:flex relative h-8 sm:h-9 lg:h-10 w-10 sm:w-12 lg:w-14 shrink-0 items-center">
             <Image
               src="/iso/iso-.avif"
               alt="ISO Verified"
-              width={80}
-              height={64}
+              width={60}
+              height={44}
               priority
               unoptimized
-              className="h-10 sm:h-14 lg:h-16 w-auto object-contain max-w-full"
+              className="h-8 sm:h-9 lg:h-10 w-auto object-contain max-w-full"
             />
           </div>
         </div>
 
         {/* Center Desktop Navigation Links (Direct Multipage Routes) */}
-        <div className="hidden lg:flex items-center gap-5 xl:gap-8 2xl:gap-9 text-[18px] xl:text-[20.5px] font-bold tracking-tight font-heading">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-[15px] xl:text-[16px] font-semibold tracking-normal font-heading">
           <Link
             href="/"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'home'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             Home
@@ -99,8 +99,8 @@ export default function Navbar({
             href="/about-us"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'about'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             About Us
@@ -110,8 +110,8 @@ export default function Navbar({
             href="/construction-services"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'construction'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             Construction
@@ -121,8 +121,8 @@ export default function Navbar({
             href="/demolition-services"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'demolition'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             Demolition
@@ -132,8 +132,8 @@ export default function Navbar({
             href="/our-team"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'team'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             Our Team
@@ -143,8 +143,8 @@ export default function Navbar({
             href="/contact"
             className={`transition-colors py-1 cursor-pointer whitespace-nowrap ${
               activeSection === 'contact'
-                ? 'text-[#0f8a3c] font-black'
-                : 'text-stone-800 hover:text-[#0f8a3c]'
+                ? 'text-[#0f8a3c] font-bold'
+                : 'text-stone-700 hover:text-[#0f8a3c]'
             }`}
           >
             Contact
@@ -155,7 +155,7 @@ export default function Navbar({
         <div className="hidden sm:flex items-center">
           <button
             onClick={handleQuoteClick}
-            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-8 py-3.5 rounded-full font-extrabold text-[16px] sm:text-[17px] tracking-wide shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95 whitespace-nowrap"
+            className="bg-[#0f8a3c] hover:bg-[#0b7331] text-white px-6 py-2.5 rounded-full font-bold text-[14px] sm:text-[15px] tracking-wide shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer active:scale-95 whitespace-nowrap"
           >
             Get in Touch
           </button>
