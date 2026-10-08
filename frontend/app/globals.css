@@ -59,6 +59,19 @@
   }
 }
 
+/* Hero sticky fullscreen frame matching screen height perfectly under zoom */
+.hero-sticky-frame {
+  height: 100vh;
+  height: 100svh;
+}
+
+@media (min-width: 761px) {
+  .hero-sticky-frame {
+    height: calc(100vh / var(--fs, 1));
+    height: calc(100svh / var(--fs, 1));
+  }
+}
+
 html {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;

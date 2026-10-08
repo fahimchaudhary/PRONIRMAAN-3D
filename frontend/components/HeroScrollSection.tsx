@@ -51,8 +51,9 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     function resizeCanvas() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const container = canvas?.parentElement || canvas;
-      width = container?.clientWidth || window.innerWidth;
-      height = container?.clientHeight || window.innerHeight;
+      const fs = (typeof window !== 'undefined' && parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs'))) || 1;
+      width = container?.clientWidth || Math.round(window.innerWidth / fs);
+      height = container?.clientHeight || Math.round(window.innerHeight / fs);
 
       if (!canvas) return;
       canvas.width = Math.round(width * dpr);
@@ -79,7 +80,8 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
         dw = width;
         dh = width / imgRatio;
         dx = 0;
-        dy = (height - dh) / 2;
+        // Anchor to bottom so active ground construction, foundations, and machinery are 100% visible
+        dy = height - dh;
       } else {
         dh = height;
         dw = height * imgRatio;
@@ -247,7 +249,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       className="relative w-full h-[600vh] sm:h-[520vh] md:h-[450vh] bg-[#f6f4f0]"
     >
       {/* Sticky Fullscreen Frame */}
-      <div className="sticky top-0 left-0 w-full h-screen h-[100svh] overflow-hidden bg-[#f6f4f0] z-10 will-change-transform">
+      <div className="sticky top-0 left-0 w-full hero-sticky-frame overflow-hidden bg-[#f6f4f0] z-10 will-change-transform">
         {/* Clipped Frame Container (Canvas + Gradient + dynamic bottom chevron cut that activates after hero scroll) */}
         <div
           className={`relative w-full h-full bg-[#0b0f15] transition-[clip-path] duration-500 ease-out ${slantActive ? 'hero-chevron-clip' : 'hero-chevron-flat'
