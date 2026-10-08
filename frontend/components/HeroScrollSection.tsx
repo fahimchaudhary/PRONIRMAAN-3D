@@ -442,14 +442,15 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
           </div>
         )}
 
-        {/* Scroll Progress Indicator */}
+        {/* Scroll Progress Indicator (Hidden on mobile devices, shown on tablet/desktop) */}
         <div
           className="
+            hidden sm:flex
             absolute
             bottom-6 right-4
             sm:bottom-12 sm:right-16
             z-30
-            flex items-center
+            items-center
             bg-black/75
             backdrop-blur-md
             px-4 sm:px-5 py-2 sm:py-2.5
