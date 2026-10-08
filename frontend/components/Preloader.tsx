@@ -84,7 +84,7 @@ export default function Preloader({ duration = 2400 }: PreloaderProps) {
       </div>
 
       {/* Main Preloader Content */}
-      <div className="relative z-10 w-[92vw] max-w-[960px] flex flex-col items-center justify-center px-4">
+      <div className="relative z-10 w-[92vw] max-w-[960px] flex flex-col items-center justify-center px-2 sm:px-4">
         {/* Animated Logo & Machines SVG */}
         <svg
           className="w-full max-h-[44vh] sm:max-h-[50vh] overflow-visible"
@@ -244,7 +244,7 @@ export default function Preloader({ duration = 2400 }: PreloaderProps) {
         </svg>
 
         {/* Subtle skip cue */}
-        <div className="mt-8 text-[11px] uppercase tracking-widest text-slate-400 font-semibold opacity-60">
+        <div className="mt-6 sm:mt-8 text-[9px] min-[360px]:text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-slate-400 font-semibold opacity-60 whitespace-nowrap text-center select-none max-w-full">
           Loading Experience • Tap anywhere to enter
         </div>
       </div>
