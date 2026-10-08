@@ -276,23 +276,23 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span 
-                    style={{ fontSize: 'clamp(0.75rem, 1vw, 0.95rem)' }}
-                    className="text-white font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
+                    style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
+                    className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
                     STRUCTURAL PLANNING
                   </span>
-                  <span className="h-[2px] w-12 sm:w-16 bg-[#0f8a3c]" />
+                  <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
                 <h1 
-                  style={{ fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)', lineHeight: 1.05 }}
-                  className="font-heading font-black text-white mb-3 sm:mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
+                  style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
+                  className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">ENGINEER</span>
                 </h1>
                 <p 
-                  style={{ fontSize: 'clamp(0.95rem, 1.25vw, 1.25rem)' }}
+                  style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
                   Forensic structural analysis, 3D BIM spatial coordination, and pre-demolition site engineering.
@@ -306,23 +306,23 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span 
-                    style={{ fontSize: 'clamp(0.75rem, 1vw, 0.95rem)' }}
-                    className="text-white font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
+                    style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
+                    className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
                     CONTROLLED DEMOLITION
                   </span>
-                  <span className="h-[2px] w-12 sm:w-16 bg-[#0f8a3c]" />
+                  <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
                 <h1 
-                  style={{ fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)', lineHeight: 1.05 }}
-                  className="font-heading font-black text-white mb-3 sm:mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
+                  style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
+                  className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">DEMOLISH</span>
                 </h1>
                 <p 
-                  style={{ fontSize: 'clamp(0.95rem, 1.25vw, 1.25rem)' }}
+                  style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
                   Surgical hydraulic clearance, mechanical dismantlement, and zero-incident site remediation.
@@ -336,23 +336,23 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span 
-                    style={{ fontSize: 'clamp(0.75rem, 1vw, 0.95rem)' }}
-                    className="text-white font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
+                    style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
+                    className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
                     CIVIL INFRASTRUCTURE
                   </span>
-                  <span className="h-[2px] w-12 sm:w-16 bg-[#0f8a3c]" />
+                  <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
                 <h1 
-                  style={{ fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)', lineHeight: 1.05 }}
-                  className="font-heading font-black text-white mb-3 sm:mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
+                  style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
+                  className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">CONSTRUCT</span>
                 </h1>
                 <p 
-                  style={{ fontSize: 'clamp(0.95rem, 1.25vw, 1.25rem)' }}
+                  style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
                   High-strength cast-in-place concrete foundations, post-tensioned slabs, and structural steel framing.
@@ -366,24 +366,24 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   : 'opacity-0 translate-y-6 invisible pointer-events-none'
                   }`}
               >
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span 
-                    style={{ fontSize: 'clamp(0.75rem, 1vw, 0.95rem)' }}
-                    className="text-white font-bold uppercase tracking-[0.25em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
+                    style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
+                    className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
                     TURNKEY ARCHITECTURE
                   </span>
-                  <span className="h-[2px] w-12 sm:w-16 bg-[#0f8a3c]" />
+                  <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
                 <h1 
-                  style={{ fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)', lineHeight: 1.05 }}
-                  className="font-heading font-black text-white mb-3 sm:mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
+                  style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
+                  className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">BUILD</span>
                 </h1>
                 <p 
-                  style={{ fontSize: 'clamp(0.95rem, 1.25vw, 1.25rem)' }}
-                  className="text-slate-100 max-w-xl leading-relaxed mb-4 sm:mb-6 font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
+                  style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
+                  className="text-slate-100 max-w-xl leading-relaxed mb-3 sm:mb-5 font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
                   Iconic, enduring commercial facilities and civil landmarks engineered for generations.
                 </p>
@@ -400,8 +400,8 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
           </div>
         </div>
 
-        {/* Interactive Phase Indicator & Scrubber */}
-        <div className="absolute left-4 sm:left-12 lg:left-16 bottom-6 sm:bottom-12 z-30 flex items-center gap-2.5 sm:gap-3 bg-black/75 backdrop-blur-md px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/15 shadow-2xl">
+        {/* Interactive Phase Indicator & Scrubber (Words Loader) */}
+        <div className="absolute left-4 sm:left-12 lg:left-16 bottom-6 sm:bottom-10 z-30 flex items-center gap-2 sm:gap-2.5 bg-black/80 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/15 shadow-xl">
           {([
             { id: 'engineer', label: 'PLAN' },
             { id: 'demolish', label: 'DEMOLISH' },
@@ -411,17 +411,16 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             <button
               key={phase.id}
               onClick={() => jumpToPhase(idx)}
-              className={`h-2.5 sm:h-3 rounded-full transition-all duration-300 cursor-pointer ${activePhase === phase.id
-                ? 'w-7 sm:w-11 bg-[#0f8a3c]'
-                : 'w-2.5 sm:w-3 bg-white/40 hover:bg-white/70'
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${activePhase === phase.id
+                ? 'w-5 sm:w-8 bg-[#0f8a3c]'
+                : 'w-2 sm:w-2.5 bg-white/40 hover:bg-white/70'
                 }`}
               title={`Jump to ${phase.label}`}
               aria-label={`Jump to phase ${idx + 1}: ${phase.label}`}
             />
           ))}
           <span 
-            style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
-            className="ml-1 font-bold text-white/90 font-condensed tracking-widest uppercase"
+            className="ml-1 font-bold text-white/90 font-condensed tracking-wider uppercase text-[11px] sm:text-xs"
           >
             {activePhase.toUpperCase()}
           </span>
@@ -448,21 +447,20 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             hidden sm:flex
             absolute
             bottom-6 right-4
-            sm:bottom-12 sm:right-16
+            sm:bottom-10 sm:right-16
             z-30
             items-center
-            bg-black/75
+            bg-black/80
             backdrop-blur-md
-            px-4 sm:px-5 py-2 sm:py-2.5
+            px-3 sm:px-4 py-1.5 sm:py-2
             rounded-full
             border border-white/15
-            shadow-2xl
+            shadow-xl
             pointer-events-none
           "
         >
           <span 
-            style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
-            className="font-bold text-white tracking-widest font-nav whitespace-nowrap"
+            className="font-bold text-white tracking-wider font-nav whitespace-nowrap text-[11px] sm:text-xs"
           >
             {progressPercent}% SCROLLED
           </span>
