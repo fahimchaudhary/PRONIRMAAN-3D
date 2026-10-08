@@ -47,37 +47,37 @@ export default function Navbar({
     <nav className="bg-white sticky top-0 z-50 shadow-xs border-b border-stone-200/90 font-nav select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18 lg:h-20">
         {/* Brand Area: Logo + Vertical Line + ISO Badge */}
-        <div className="flex items-center gap-2 sm:gap-3.5 shrink-0 min-w-0">
+        <div className="flex items-center gap-2.5 sm:gap-4 shrink-0 min-w-0">
           <Link
             href="/"
             className="flex items-center cursor-pointer transition-transform hover:scale-[1.01]"
           >
-            <div className="relative h-10 sm:h-11 lg:h-12 w-40 sm:w-48 lg:w-56 shrink-0 flex items-center">
+            <div className="relative h-11 sm:h-13 lg:h-[58px] w-44 sm:w-56 lg:w-68 shrink-0 flex items-center">
               <Image
                 src="/logo.png"
                 alt="ProNirmaan Solutions"
-                width={260}
-                height={52}
+                width={300}
+                height={65}
                 priority
                 unoptimized
-                className="h-10 sm:h-11 lg:h-12 w-auto object-contain object-left max-w-full"
+                className="h-11 sm:h-13 lg:h-[58px] w-auto object-contain object-left max-w-full"
               />
             </div>
           </Link>
 
           {/* Thin Vertical Separator - Shown on sm+ screens */}
-          <div className="hidden sm:block h-6 sm:h-7 lg:h-8 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-1.5" />
+          <div className="hidden sm:block h-7 sm:h-9 lg:h-10 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-2" />
 
           {/* ISO Verified Badge - Shown on sm+ screens (on phone it's in the mobile drawer) */}
-          <div className="hidden sm:flex relative h-8 sm:h-9 lg:h-10 w-10 sm:w-12 lg:w-14 shrink-0 items-center">
+          <div className="hidden sm:flex relative h-9 sm:h-11 lg:h-12 w-11 sm:w-14 lg:w-16 shrink-0 items-center">
             <Image
               src="/iso/iso-.avif"
               alt="ISO Verified"
-              width={60}
-              height={44}
+              width={70}
+              height={52}
               priority
               unoptimized
-              className="h-8 sm:h-9 lg:h-10 w-auto object-contain max-w-full"
+              className="h-9 sm:h-11 lg:h-12 w-auto object-contain max-w-full"
             />
           </div>
         </div>
