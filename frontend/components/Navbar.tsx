@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, PhoneCall } from 'lucide-react';
 
 interface NavbarProps {
   activeSection?: string;
@@ -45,14 +45,14 @@ export default function Navbar({
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-xs border-b border-stone-200/90 font-nav select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-22 sm:h-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-18 sm:h-22 lg:h-24">
         {/* Brand Area: Logo + Vertical Line + ISO Badge */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0 min-w-0">
           <Link
             href="/"
             className="flex items-center cursor-pointer transition-transform hover:scale-[1.01]"
           >
-            <div className="relative h-14 sm:h-16 lg:h-18 w-56 sm:w-72 lg:w-80 shrink-0 flex items-center" style={{ maxWidth: '340px', maxHeight: '74px' }}>
+            <div className="relative h-11 sm:h-14 lg:h-18 w-44 sm:w-64 lg:w-80 shrink-0 flex items-center" style={{ maxWidth: '340px', maxHeight: '74px' }}>
               <Image
                 src="/logo.png"
                 alt="ProNirmaan Solutions"
@@ -60,16 +60,16 @@ export default function Navbar({
                 height={74}
                 priority
                 unoptimized
-                className="h-14 sm:h-16 lg:h-18 w-auto object-contain object-left max-w-full"
+                className="h-11 sm:h-14 lg:h-18 w-auto object-contain object-left max-w-full"
               />
             </div>
           </Link>
 
-          {/* Thin Vertical Separator */}
-          <div className="h-10 sm:h-12 lg:h-14 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-2" />
+          {/* Thin Vertical Separator - Shown on sm+ screens */}
+          <div className="hidden sm:block h-8 sm:h-12 lg:h-14 w-[1.5px] bg-stone-300/80 shrink-0 mx-1 sm:mx-2" />
 
-          {/* ISO Verified Badge */}
-          <div className="relative h-12 sm:h-14 lg:h-16 w-14 sm:w-16 lg:w-20 shrink-0 flex items-center" style={{ maxWidth: '80px', maxHeight: '64px' }}>
+          {/* ISO Verified Badge - Shown on sm+ screens (on phone it's in the mobile drawer) */}
+          <div className="hidden sm:flex relative h-10 sm:h-14 lg:h-16 w-12 sm:w-16 lg:w-20 shrink-0 items-center" style={{ maxWidth: '80px', maxHeight: '64px' }}>
             <Image
               src="/iso/iso-.avif"
               alt="ISO Verified"
@@ -77,7 +77,7 @@ export default function Navbar({
               height={64}
               priority
               unoptimized
-              className="h-12 sm:h-14 lg:h-16 w-auto object-contain max-w-full"
+              className="h-10 sm:h-14 lg:h-16 w-auto object-contain max-w-full"
             />
           </div>
         </div>
@@ -161,23 +161,23 @@ export default function Navbar({
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button with hover feedback */}
         <div className="flex lg:hidden items-center gap-2 shrink-0">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
-            className="w-12 h-12 rounded-xl bg-stone-100 hover:bg-[#0f8a3c]/10 text-stone-800 hover:text-[#0f8a3c] flex items-center justify-center border border-stone-200/90 shadow-2xs transition-all active:scale-95 cursor-pointer"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-stone-100 hover:bg-[#e4f7ea] text-stone-800 hover:text-[#0f8a3c] flex items-center justify-center border border-stone-200/90 shadow-2xs transition-all duration-200 active:scale-90 cursor-pointer group"
           >
             {mobileMenuOpen ? (
-              <X className="w-7 h-7 stroke-[2.5]" />
+              <X className="w-6 h-6 stroke-[2.5] transition-transform duration-300 group-hover:rotate-90" />
             ) : (
-              <Menu className="w-7 h-7 stroke-[2.5]" />
+              <Menu className="w-6 h-6 stroke-[2.5] transition-transform duration-300 group-hover:scale-110" />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu (Exact match to First Design) */}
+      {/* Mobile Drawer Menu (Exact match to First Design + MSV Freight Interactive Hover) */}
       {mounted && mobileMenuOpen && createPortal(
         <div className="fixed inset-0 z-[99999] lg:hidden flex">
           {/* Backdrop overlay (dimming right side) */}
@@ -188,24 +188,30 @@ export default function Navbar({
           />
 
           {/* Left Slide Drawer panel */}
-          <div className="relative w-[84%] max-w-[340px] h-[100dvh] bg-white flex flex-col justify-between shadow-2xl z-10 overflow-y-auto animate-in slide-in-from-left duration-300">
+          <div className="relative w-[86%] max-w-[340px] h-[100dvh] bg-white flex flex-col justify-between shadow-2xl z-10 overflow-y-auto animate-in slide-in-from-left duration-300">
             {/* Top Section with Close Button & Centered Circular Brand Badge */}
-            <div className="pt-4 px-4 pb-4 shrink-0">
+            <div className="pt-4 px-4 pb-4 shrink-0 bg-gradient-to-b from-stone-50/80 to-white border-b border-stone-100">
               {/* Close Button top-right */}
               <div className="flex justify-end">
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close navigation menu"
-                  className="w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 flex items-center justify-center transition-colors cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-stone-100 hover:bg-[#e4f7ea] text-stone-600 hover:text-[#0f8a3c] flex items-center justify-center transition-all duration-300 hover:rotate-90 cursor-pointer active:scale-90"
                 >
-                  <X className="w-5 h-5 stroke-[2]" />
+                  <X className="w-5 h-5 stroke-[2.2]" />
                 </button>
               </div>
 
               {/* Centered Circular Brand Badge with Green Halo Ring */}
-              <div className="text-center px-4 -mt-1">
-                <div className="relative w-[96px] h-[96px] mx-auto mb-3 rounded-full bg-[#ecf8f1] border border-[#cbeed8] flex items-center justify-center shadow-xs">
-                  <div className="relative w-[74px] h-[74px] rounded-full border-2 border-[#0f8a3c] bg-white flex items-center justify-center p-3 shadow-2xs">
+              <div
+                className="text-center px-4 -mt-1 group cursor-pointer"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.location.href = '/';
+                }}
+              >
+                <div className="relative w-[92px] h-[92px] mx-auto mb-3 rounded-full bg-[#ecf8f1] border border-[#cbeed8] flex items-center justify-center shadow-xs transition-transform duration-300 group-hover:scale-105">
+                  <div className="relative w-[72px] h-[72px] rounded-full border-2 border-[#0f8a3c] bg-white flex items-center justify-center p-3 shadow-2xs">
                     <div className="relative w-full h-full">
                       <Image
                         src="/icon.png"
@@ -222,14 +228,14 @@ export default function Navbar({
                 <h3 className="font-heading font-black text-[15px] uppercase tracking-wider text-[#1e293b]">
                   PRONIRMAAN SOLUTIONS
                 </h3>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-stone-500 mt-1 font-nav">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#0f8a3c] mt-0.5 font-nav">
                   CIVIL WORKS &amp; CONTROL DEMOLITION
                 </p>
               </div>
             </div>
 
-            {/* Navigation Items List with Chevron and Active Indicator */}
-            <div className="border-t border-stone-100 flex-1 overflow-y-auto">
+            {/* Navigation Items List with MSV Freight style sliding green hover animation */}
+            <div className="flex-1 overflow-y-auto py-2">
               <ul className="flex flex-col font-heading">
                 {[
                   { href: '/', label: 'Home', key: 'home' },
@@ -241,22 +247,48 @@ export default function Navbar({
                 ].map((item) => {
                   const isActive = activeSection === item.key;
                   return (
-                    <li key={item.href} className="border-b border-stone-100">
+                    <li key={item.href} className="border-b border-stone-100/80 last:border-b-0">
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex items-center gap-4 py-3.5 px-6 font-bold text-[17px] transition-colors ${
+                        className={`group relative overflow-hidden isolate flex items-center justify-between py-4 px-6 font-bold text-[17px] transition-all duration-300 select-none ${
                           isActive
-                            ? 'border-l-[3.5px] border-[#0f8a3c] bg-[#f0fbf4] text-[#0f8a3c]'
-                            : 'border-l-[3.5px] border-transparent text-[#1e293b] hover:text-[#0f8a3c] hover:bg-stone-50'
+                            ? 'text-[#0f8a3c] font-black'
+                            : 'text-stone-800 hover:text-stone-950 active:bg-[#e4f7ea]/50'
                         }`}
                       >
-                        <ChevronRight
-                          className={`w-4 h-4 stroke-[2.2] shrink-0 ${
-                            isActive ? 'text-[#0f8a3c]' : 'text-stone-400'
+                        {/* Soft light green sliding sheet from left on hover / tap */}
+                        <div
+                          className={`absolute inset-0 bg-[#e4f7ea] -z-10 transition-transform duration-300 ease-out pointer-events-none ${
+                            isActive
+                              ? 'translate-x-0'
+                              : '-translate-x-full group-hover:translate-x-0'
+                          }`}
+                          aria-hidden="true"
+                        />
+
+                        {/* Left green active indicator pill */}
+                        <div
+                          className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 rounded-r-full bg-[#0f8a3c] transition-all duration-300 ${
+                            isActive
+                              ? 'opacity-100 scale-y-100'
+                              : 'opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100'
                           }`}
                         />
-                        <span>{item.label}</span>
+
+                        {/* Label with smooth shift right */}
+                        <span className="transition-transform duration-300 group-hover:translate-x-2">
+                          {item.label}
+                        </span>
+
+                        {/* Chevron pill with rotation & scale */}
+                        <div className="w-8 h-8 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center shadow-2xs transition-all duration-300 group-hover:translate-x-1 group-hover:rotate-[-8deg] group-hover:scale-110">
+                          <ChevronRight
+                            className={`w-4 h-4 stroke-[2.5] transition-colors ${
+                              isActive ? 'text-[#0f8a3c]' : 'text-stone-400 group-hover:text-[#0f8a3c]'
+                            }`}
+                          />
+                        </div>
                       </Link>
                     </li>
                   );
@@ -264,19 +296,30 @@ export default function Navbar({
               </ul>
             </div>
 
-            {/* Bottom Action Pill Button & ISO */}
-            <div className="p-5 border-t border-stone-100 bg-white shrink-0">
+            {/* Bottom Action Pill Button & Phone & ISO */}
+            <div className="p-5 border-t border-stone-100 bg-stone-50/50 shrink-0 space-y-3">
+              {/* Direct Call Quick Action */}
+              <a
+                href="tel:+919594511900"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white border border-stone-200/80 hover:border-[#0f8a3c] text-stone-700 hover:text-[#0f8a3c] text-xs font-heading font-bold uppercase tracking-wider transition-colors shadow-2xs"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-[#0f8a3c]" />
+                <span>Call: +91 9594511900</span>
+              </a>
+
+              {/* Get in Touch CTA */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   handleQuoteClick();
                 }}
-                className="w-full bg-[#0f8a3c] hover:bg-[#0b7331] active:scale-[0.98] text-white py-3.5 rounded-xl font-heading font-bold text-[15px] tracking-wide shadow-md transition-all cursor-pointer"
+                className="w-full bg-[#0f8a3c] hover:bg-[#0b7331] active:scale-[0.98] text-white py-3.5 rounded-xl font-heading font-bold text-[15px] tracking-wide shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
               >
-                Get in Touch
+                <span>Get in Touch</span>
               </button>
               
-              <div className="mt-4 flex items-center justify-center gap-2">
+              {/* ISO Badge */}
+              <div className="pt-1 flex items-center justify-center gap-2">
                 <div className="relative w-5 h-5 shrink-0 flex items-center" style={{ maxWidth: '20px', maxHeight: '20px' }}>
                   <Image
                     src="/iso/iso-.avif"
