@@ -40,8 +40,8 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     let lastRenderedIndex = -1;
     let isDestroyed = false;
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    let width = 0;
+    let height = 0;
 
     function getFrameUrl(index: number) {
       const frameNum = String(index + 1).padStart(4, '0');
@@ -49,21 +49,39 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     }
 
     function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const container = canvas?.parentElement || canvas;
-      const fs = (typeof window !== 'undefined' && parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs'))) || 1;
-      const newWidth = container?.clientWidth || Math.round(window.innerWidth / fs);
-      const newHeight = container?.clientHeight || Math.round(window.innerHeight / fs);
-
       if (!canvas) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const container = canvas.parentElement || canvas;
+      const fs = (typeof window !== 'undefined' && parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs'))) || 1;
+      
+      const viewportW = typeof window !== 'undefined' ? window.innerWidth : 1280;
+      const viewportH = typeof window !== 'undefined' ? window.innerHeight : 800;
+      const isMobile = viewportW <= 760;
 
-      if (newWidth === width && newHeight === height && canvas.width > 0) return;
+      // On mobile, the fullscreen frame MUST always match viewport width & height (never a 150px unrendered container)
+      const newWidth = isMobile
+        ? viewportW
+        : (container.clientWidth && container.clientWidth > 300 ? container.clientWidth : Math.round(viewportW / fs));
+
+      const newHeight = isMobile
+        ? viewportH
+        : (container.clientHeight && container.clientHeight > 300 ? container.clientHeight : Math.round(viewportH / fs));
+
+      if (newWidth <= 0 || newHeight <= 0) return;
+
+      const targetW = Math.round(newWidth * dpr);
+      const targetH = Math.round(newHeight * dpr);
+
+      // Only skip if already matching target buffer dimensions
+      if (canvas.width === targetW && canvas.height === targetH && width === newWidth && height === newHeight) {
+        return;
+      }
 
       width = newWidth;
       height = newHeight;
 
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
+      canvas.width = targetW;
+      canvas.height = targetH;
       canvas.style.width = '100%';
       canvas.style.height = '100%';
 
@@ -75,13 +93,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     }
 
     function drawCover(img: HTMLImageElement) {
-      if (!img) return;
+      if (!img || width <= 0 || height <= 0) return;
       const imgWidth = img.naturalWidth || img.width || 1920;
       const imgHeight = img.naturalHeight || img.height || 1080;
       const imgRatio = imgWidth / imgHeight;
       const screenRatio = width / height;
 
-      let dw, dh, dx, dy;
+      let dw: number, dh: number, dx: number, dy: number;
       if (screenRatio > imgRatio) {
         dw = width;
         dh = width / imgRatio;
@@ -95,6 +113,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
         dy = 0;
       }
 
+      ctx.clearRect(0, 0, width, height);
       ctx.drawImage(img, dx, dy, dw, dh);
     }
 
@@ -145,9 +164,12 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       const diff = targetProgress - currentProgress;
       const absDiff = Math.abs(diff);
 
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      const baseLerp = isMobile ? 0.42 : LERP_FACTOR;
+
       if (absDiff > 0.0001) {
-        // Fast scroll: dynamically increases up to 0.85 so frames keep up with quick finger flicks on mobile
-        const activeLerp = absDiff > 0.08 ? Math.min(0.85, LERP_FACTOR + absDiff * 1.5) : LERP_FACTOR;
+        // Fast scroll: dynamically increases so frames keep up with quick finger flicks on mobile
+        const activeLerp = absDiff > 0.06 ? Math.min(0.92, baseLerp + absDiff * 1.8) : baseLerp;
         currentProgress += diff * activeLerp;
         renderCurrent();
         updateActivePhase(currentProgress);
@@ -217,6 +239,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       loadNextBatch(8);
     }
 
+    // Disable automatic browser scroll restoration so reload starts at top cleanly
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      try {
+        window.history.scrollRestoration = 'manual';
+      } catch (_) {}
+    }
+
     const onResize = () => {
       resizeCanvas();
       handleScroll();
@@ -225,14 +254,39 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     window.addEventListener('resize', onResize);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && canvas.parentElement) {
+      resizeObserver = new ResizeObserver(() => {
+        resizeCanvas();
+        handleScroll();
+      });
+      resizeObserver.observe(canvas.parentElement);
+    }
+
     resizeCanvas();
     handleScroll();
+
+    // Immediately load and paint frame 0 if available in cache (already preloaded by Preloader)
+    const firstImg = new Image();
+    firstImg.src = getFrameUrl(0);
+    firstImg.onload = () => {
+      frames[0] = firstImg;
+      if (lastRenderedIndex <= 0) {
+        renderCurrent(true);
+      }
+    };
+    if (firstImg.complete && firstImg.naturalWidth > 0) {
+      frames[0] = firstImg;
+      renderCurrent(true);
+    }
+
     preloadFrames();
     animationFrameId = requestAnimationFrame(tick);
 
     return () => {
       isDestroyed = true;
       cancelAnimationFrame(animationFrameId);
+      if (resizeObserver) resizeObserver.disconnect();
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -252,7 +306,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     <section
       id="hero-scroll-container"
       ref={containerRef}
-      className="relative w-full h-[600vh] sm:h-[520vh] md:h-[450vh] bg-[#0b0f15]"
+      className="relative w-full h-[460vh] sm:h-[480vh] md:h-[450vh] bg-[#0b0f15]"
     >
       {/* Sticky Fullscreen Frame */}
       <div

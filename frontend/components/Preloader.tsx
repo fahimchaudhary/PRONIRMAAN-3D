@@ -12,10 +12,16 @@ export default function Preloader({ duration = 2400 }: PreloaderProps) {
 
   const handleDismiss = useCallback(() => {
     setIsVisible(false);
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = '';
+    }
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('resize'));
+    }
     setTimeout(() => {
       setHasUnmounted(true);
-      if (typeof document !== 'undefined') {
-        document.body.style.overflow = '';
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('resize'));
       }
     }, 700);
   }, []);
