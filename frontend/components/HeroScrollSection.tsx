@@ -52,10 +52,16 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const container = canvas?.parentElement || canvas;
       const fs = (typeof window !== 'undefined' && parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs'))) || 1;
-      width = container?.clientWidth || Math.round(window.innerWidth / fs);
-      height = container?.clientHeight || Math.round(window.innerHeight / fs);
+      const newWidth = container?.clientWidth || Math.round(window.innerWidth / fs);
+      const newHeight = container?.clientHeight || Math.round(window.innerHeight / fs);
 
       if (!canvas) return;
+
+      if (newWidth === width && newHeight === height && canvas.width > 0) return;
+
+      width = newWidth;
+      height = newHeight;
+
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = '100%';
@@ -246,14 +252,19 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
     <section
       id="hero-scroll-container"
       ref={containerRef}
-      className="relative w-full h-[600vh] sm:h-[520vh] md:h-[450vh] bg-[#f6f4f0]"
+      className="relative w-full h-[600vh] sm:h-[520vh] md:h-[450vh] bg-[#0b0f15]"
     >
       {/* Sticky Fullscreen Frame */}
-      <div className="sticky top-0 left-0 w-full hero-sticky-frame overflow-hidden bg-[#f6f4f0] z-10 will-change-transform">
+      <div
+        className={`sticky top-0 left-0 w-full hero-sticky-frame overflow-hidden z-10 transition-colors duration-500 ${
+          slantActive ? 'bg-[#f6f4f0]' : 'bg-[#0b0f15]'
+        }`}
+      >
         {/* Clipped Frame Container (Canvas + Gradient + dynamic bottom chevron cut that activates after hero scroll) */}
         <div
-          className={`relative w-full h-full bg-[#0b0f15] transition-[clip-path] duration-500 ease-out ${slantActive ? 'hero-chevron-clip' : 'hero-chevron-flat'
-            }`}
+          className={`relative w-full h-full bg-[#0b0f15] transition-[clip-path] duration-500 ease-out ${
+            slantActive ? 'hero-chevron-clip' : 'hero-chevron-flat'
+          }`}
         >
           {/* Canvas for 300-frame video sequence */}
           <canvas

@@ -11,9 +11,9 @@ import HomeCtaBanner from '@/components/HomeCtaBanner';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f6f4f0] text-stone-900 selection:bg-[#0f8a3c] selection:text-white">
+    <div className="w-full bg-[#f6f4f0] text-stone-900 selection:bg-[#0f8a3c] selection:text-white">
       {/* Main Content Area */}
-      <main className="flex-1">
+      <div className="w-full">
         {/* 1. Hero Scroll Section with Canvas 300-Frame Animation & Scrollytelling Phases */}
         <HeroScrollSection
           onStartProject={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
@@ -39,7 +39,7 @@ export default function HomePage() {
 
         {/* 8. Institutional Footer & Legal Disclosures */}
         
-      </main>
+      </div>
 
       {/* Interactive Modals */}
     </div>
