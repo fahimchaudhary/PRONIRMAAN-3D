@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 
 interface HeroScrollSectionProps {
   onStartProject: () => void;
@@ -272,8 +272,9 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             className="absolute inset-0 w-full h-full block"
           />
 
-          {/* Soft, natural left vignette gradient for clean typography contrast without dark black shades */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent pointer-events-none" />
+          {/* Cinematic vignette gradients for clean typography contrast and controls separation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/10 sm:from-black/60 sm:via-black/25 sm:to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 sm:hidden pointer-events-none" />
         </div>
 
         {/* Cinematic Scrollytelling Typography Overlay */}
@@ -412,7 +413,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
         </div>
 
         {/* Interactive Phase Indicator & Scrubber (Words Loader) */}
-        <div className="absolute left-4 sm:left-12 lg:left-16 bottom-6 sm:bottom-10 z-30 flex items-center gap-2 sm:gap-2.5 bg-black/80 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/15 shadow-xl">
+        <div className="absolute left-3.5 sm:left-12 lg:left-16 bottom-4 sm:bottom-10 z-30 flex items-center gap-1.5 sm:gap-2.5 bg-black/85 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-2xl">
           {([
             { id: 'engineer', label: 'PLAN' },
             { id: 'demolish', label: 'DEMOLISH' },
@@ -431,23 +432,28 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             />
           ))}
           <span
-            className="ml-1 font-bold text-white/90 font-condensed tracking-wider uppercase text-[11px] sm:text-xs"
+            className="ml-1 font-bold text-white/90 font-condensed tracking-wider uppercase text-[10px] sm:text-xs"
           >
             {activePhase.toUpperCase()}
           </span>
         </div>
 
-        {/* Mobile / First-time Scroll Cue */}
+        {/* First-time Scroll Cue: Float cleanly above bottom controls on mobile, centered at bottom on desktop */}
         {progressPercent < 6 && (
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-25 pointer-events-none flex flex-col items-center gap-1 animate-bounce opacity-85">
+          <div className="absolute bottom-18 sm:bottom-6 left-1/2 -translate-x-1/2 z-25 pointer-events-none flex flex-col items-center gap-1.5 transition-opacity duration-300">
             <span
               style={{ fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}
-              className="font-bold tracking-[0.2em] uppercase text-white/90 font-nav drop-shadow-md"
+              className="font-bold tracking-[0.22em] uppercase text-white/90 font-nav drop-shadow-md select-none whitespace-nowrap"
             >
               Scroll to explore
             </span>
-            <div className="w-3.5 h-6 rounded-full border border-white/70 flex items-start justify-center p-0.5">
+            {/* Desktop: Animated mouse scroll icon */}
+            <div className="hidden sm:flex w-3.5 h-6 rounded-full border border-white/70 items-start justify-center p-0.5 animate-bounce">
               <div className="w-1 h-1.5 bg-[#0f8a3c] rounded-full animate-pulse" />
+            </div>
+            {/* Mobile: Sleek animated chevron down indicating scroll/swipe */}
+            <div className="sm:hidden flex items-center justify-center animate-bounce">
+              <ChevronDown className="w-4 h-4 text-[#0f8a3c] drop-shadow-md stroke-[2.5]" />
             </div>
           </div>
         )}
