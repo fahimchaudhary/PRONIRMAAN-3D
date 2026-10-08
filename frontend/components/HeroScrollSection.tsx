@@ -277,7 +277,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   }`}
               >
                 <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                  <span 
+                  <span
                     style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
                     className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
@@ -285,13 +285,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   </span>
                   <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
-                <h1 
+                <h1
                   style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
                   className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">ENGINEER</span>
                 </h1>
-                <p 
+                <p
                   style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
@@ -307,7 +307,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   }`}
               >
                 <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                  <span 
+                  <span
                     style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
                     className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
@@ -315,13 +315,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   </span>
                   <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
-                <h1 
+                <h1
                   style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
                   className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">DEMOLISH</span>
                 </h1>
-                <p 
+                <p
                   style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
@@ -337,7 +337,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   }`}
               >
                 <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                  <span 
+                  <span
                     style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
                     className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
@@ -345,13 +345,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   </span>
                   <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
-                <h1 
+                <h1
                   style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
                   className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">CONSTRUCT</span>
                 </h1>
-                <p 
+                <p
                   style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
@@ -367,7 +367,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   }`}
               >
                 <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                  <span 
+                  <span
                     style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.85rem)' }}
                     className="text-white font-bold uppercase tracking-[0.22em] font-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
                   >
@@ -375,13 +375,13 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
                   </span>
                   <span className="h-[2px] w-10 sm:w-14 bg-[#0f8a3c]" />
                 </div>
-                <h1 
+                <h1
                   style={{ fontSize: 'clamp(2.1rem, 4.2vw, 4.2rem)', lineHeight: 1.08 }}
                   className="font-heading font-black text-white mb-2 sm:mb-4 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] tracking-tight"
                 >
                   WE <span className="text-[#0f8a3c]">BUILD</span>
                 </h1>
-                <p 
+                <p
                   style={{ fontSize: 'clamp(0.85rem, 1.05vw, 1.05rem)' }}
                   className="text-slate-100 max-w-xl leading-relaxed mb-3 sm:mb-5 font-body drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
                 >
@@ -419,7 +419,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
               aria-label={`Jump to phase ${idx + 1}: ${phase.label}`}
             />
           ))}
-          <span 
+          <span
             className="ml-1 font-bold text-white/90 font-condensed tracking-wider uppercase text-[11px] sm:text-xs"
           >
             {activePhase.toUpperCase()}
@@ -429,7 +429,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
         {/* Mobile / First-time Scroll Cue */}
         {progressPercent < 6 && (
           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-25 pointer-events-none flex flex-col items-center gap-1 animate-bounce opacity-85">
-            <span 
+            <span
               style={{ fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}
               className="font-bold tracking-[0.2em] uppercase text-white/90 font-nav drop-shadow-md"
             >
@@ -447,7 +447,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             hidden sm:flex
             absolute
             bottom-6 right-4
-            sm:bottom-10 sm:right-16
+            sm:bottom-27 sm:right-16
             z-30
             items-center
             bg-black/80
@@ -459,7 +459,7 @@ export default function HeroScrollSection({ onStartProject, onAnimationComplete 
             pointer-events-none
           "
         >
-          <span 
+          <span
             className="font-bold text-white tracking-wider font-nav whitespace-nowrap text-[11px] sm:text-xs"
           >
             {progressPercent}% SCROLLED
